@@ -1,0 +1,56 @@
+// 难受
+1137. Single Number II
+
+Given a non-empty array of integers, every element appears three times except for one, which appears exactly once. Find that single one.
+
+Note:
+
+Your algorithm should have a linear runtime complexity. Could you implement it without using extra memory?
+
+Example 1:
+
+Input: [2,2,3,2]
+Output: 3
+Example 2:
+
+Input: [0,1,0,1,0,1,99]
+Output: 99
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+这个题其实就是求，在其他数都出现k次的数组中有一个数只出现一次，求出这个数。
+
+而上面那个k次的是有通用解法的。
+
+用一个32维的数组，访问原数组中的数，用这个32维的数组存储这些数里面第0位1的个数，第1位1的个数。。。第31位1的个数。
+
+假如第0位1的个数是k的倍数，那么要求的这个数在该位一定是0，若不是k的倍数，那么要求的这个数在该位一定是1，第1位的1一直到第31位的1的个数同理。
+
+为什么呢？因为假如说数组中的某些数在该位置是1，那么因为这个数要么出现k次，那么出现1次，因此，该位置一定可以表示成k*m或者k*m+1，
+m代表该位是1的数的种类。当表示成k*m的时候代表该位为1的数都是出现k次的，而当表示为k*m+1的时候代表该位为1的数还有只出现一次的情况。
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+class Solution {
+public:
+    int singleNumber(vector<int>& nums) {
+        int one = 0, two = 0, three = 0, size = nums.size();
+        while(size-- > 0){
+            two |= one & nums[size]; // 出现次数大于等于2的
+            one ^= nums[size]; // 出现次数是奇数的
+            three = two & one;  //所以one和two相交就是出现3次的
+            two &= ~three;
+            one &= ~three;
+        }
+        return one;
+    }
+};
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+class Solution {
+public:
+    int singleNumber(vector<int>& nums) {
+        int ones = 0, twos = 0;
+        for(int i = 0; i < nums.size(); i++){
+            ones = (ones ^ nums[i]) & ~twos; //(ones ^ nums[i])可能是1次或3次,若是3次twos对应位置必是1，若是1次twos对应位置必是0
+            twos = (twos ^ nums[i]) & ~ones; //(twos ^ nums[i])要调整为1^1=0,1^0=1,0^1=0,0^0=0，即0^1不是普通的异或
+        }
+        return ones; //此时，twos一定是0，所以return ones | twos 也对   
+    }
+};

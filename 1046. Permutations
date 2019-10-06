@@ -1,0 +1,63 @@
+1046. Permutations
+题目描述提示帮助提交记录社区讨论阅读解答
+随机一题
+Given a collection of distinct integers, return all possible permutations.
+
+Example:
+
+Input: [1,2,3]
+Output:
+[
+  [1,2,3],
+  [1,3,2],
+  [2,1,3],
+  [2,3,1],
+  [3,1,2],
+  [3,2,1]
+]
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+class Solution {
+    vector<vector<int> > ans;
+public:
+    vector<vector<int>> permute(vector<int>& nums) {
+        vector<int> tmp;
+        int size = nums.size();
+        for(int i=0; i<size; i++){
+            premu(nums, i, tmp);
+        }
+        return ans;
+    }
+     void premu(vector<int> nums, int i, vector<int> tmp){
+        tmp.push_back(nums[i]);
+        nums.erase(nums.begin() + i);
+        if(nums.size() == 0){
+            ans.push_back(tmp);
+            return;
+        }
+        for(i=0; i<nums.size(); i++){
+            premu(nums, i, tmp);
+        }
+    }
+};
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+class Solution {
+    vector<vector<int> > ans;
+public:
+    vector<vector<int>> permute(vector<int>& nums) {
+        permu(nums, 0);
+        return ans;
+    }
+    void permu(vector<int >& nums, int begin){
+        if(begin == nums.size()){
+            ans.push_back(nums);
+            return;
+        }
+        for(int i=begin; i<nums.size(); i++){
+            swap(nums[begin], nums[i]);
+            permu(nums, begin+1);
+            swap(nums[begin], nums[i]);
+        }      
+    }
+};

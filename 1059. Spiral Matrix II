@@ -1,0 +1,33 @@
+// 好奇打败了百分之百的人是怎么做的
+1059. Spiral Matrix II
+
+Given a positive integer n, generate a square matrix filled with elements from 1 to n2 in spiral order.
+
+Example:
+
+Input: 3
+Output:
+[
+ [ 1, 2, 3 ],
+ [ 8, 9, 4 ],
+ [ 7, 6, 5 ]
+]
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+class Solution {
+public:
+    vector<vector<int>> generateMatrix(int n) {
+        int left = 0, right = n-1, up = 0, down = n-1, i, j, cnt = 1;
+        vector<vector<int> > ans(n, vector<int>(n, 0));
+        while(1){
+            for(j = left; j <= right; j++) ans[up][j] = cnt++;
+            if(++up > down) break;
+            for(i = up; i <= down; i++) ans[i][right] = cnt++;
+            --right;//if(--right < left) break;
+            for(j = right; j >= left; j--) ans[down][j] = cnt++;
+            if(--down < up) break;
+            for(i = down; i>=up; i--) ans[i][left] = cnt++;
+            ++left;//if(++left > right) break;
+        }
+        return ans;
+    }
+};

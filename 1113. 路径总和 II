@@ -1,0 +1,32 @@
+113. 路径总和 II
+给定一个二叉树和一个目标和，找到所有从根节点到叶子节点路径总和等于给定目标和的路径。
+/**
+ * Definition for a binary tree node.
+ * struct TreeNode {
+ *     int val;
+ *     TreeNode *left;
+ *     TreeNode *right;
+ *     TreeNode(int x) : val(x), left(NULL), right(NULL) {}
+ * };
+ */
+class Solution {
+public:
+    vector<vector<int> > res;
+    vector<int> tmp;
+    vector<vector<int>> pathSum(TreeNode* root, int sum) {
+        DFS(root, sum);
+        return res;
+    }
+    void DFS(TreeNode* root, int sum){
+        if(!root) return;
+        tmp.push_back(root->val);
+        sum -= root->val;
+        if(sum == 0 && root->left == NULL &&  root->right == NULL)
+            res.push_back(tmp);
+        else{
+            DFS(root->left, sum);
+            DFS(root->right, sum);
+        }
+        tmp.pop_back();
+    }
+};

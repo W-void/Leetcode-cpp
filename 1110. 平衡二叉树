@@ -1,0 +1,31 @@
+/**
+给定一个二叉树，判断它是否是高度平衡的二叉树。
+
+本题中，一棵高度平衡二叉树定义为：
+
+一个二叉树每个节点 的左右两个子树的高度差的绝对值不超过1。
+
+ * Definition for a binary tree node.
+ * struct TreeNode {
+ *     int val;
+ *     TreeNode *left;
+ *     TreeNode *right;
+ *     TreeNode(int x) : val(x), left(NULL), right(NULL) {}
+ * };
+ */
+class Solution {
+public:
+    bool isBalanced(TreeNode* root) {
+        if(deep(root) == -1) return false;
+        return true;
+    }
+    int deep(TreeNode* root){
+        if(!root) return 0;
+        int l = deep(root->left);
+        int r = deep(root->right);
+        if(l == -1 || r == -1 || l-r > 1 || r-l > 1)
+            return -1;
+        else
+            return l > r ? l+1 : r+1;
+    }
+};

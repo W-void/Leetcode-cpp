@@ -1,0 +1,47 @@
+// 返回链表入环的第一个结点
+1142. Linked List Cycle II
+
+Given a linked list, return the node where the cycle begins. If there is no cycle, return null.
+
+Note: Do not modify the linked list.
+
+Follow up:
+Can you solve it without using extra space?
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+/**
+ * Definition for singly-linked list.
+ * struct ListNode {
+ *     int val;
+ *     ListNode *next;
+ *     ListNode(int x) : val(x), next(NULL) {}
+ * };
+ */
+class Solution {
+public:
+    ListNode *detectCycle(ListNode *head) { //分3步
+        ListNode *slow = head, *fast = head;
+        int i = 0;
+        while(fast && fast->next){ // 第一步：用快慢指针法确定有没有环
+            slow = slow->next;
+            fast = fast->next->next;
+            if(slow == fast){
+                i = 1;
+                break;
+            } 
+        }
+        if(!i) return NULL;
+        /*
+        for(; fast->next != slow; fast = fast->next, i++); // 第二步：确定环中结点的个数，注意到此时slow、fast已经在环中
+        fast = slow = head;
+        while(i--) fast = fast->next; //第三步：先让fast往前走i步，然后fast、slow一起走，当fast和slow相遇时，即是入环的开始
+        */
+        slow = head; // 可以证明，第二步和第三步可以合为这一步。
+        //设起始点为A，入环的结点为B，slow和fast相遇于C，则A到C的路程等于C绕环一圈再回到C的路程。
+        //所以令slow=head，然后和fast一起走，将会相遇于B点。
+        while(slow != fast){
+            slow = slow->next;
+            fast = fast->next;
+        }
+        return slow;
+    }
+};

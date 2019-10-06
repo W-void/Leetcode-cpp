@@ -1,0 +1,42 @@
+// DFS ，遇到的第一道需要另写函数的题
+17. Letter Combinations of a Phone Number
+题目描述提示帮助提交记录社区讨论阅读解答
+随机一题
+Given a string containing digits from 2-9 inclusive, return all possible letter combinations that the number could represent.
+
+A mapping of digit to letters (just like on the telephone buttons) is given below. Note that 1 does not map to any letters.
+
+Example:
+
+Input: "23"
+Output: ["ad", "ae", "af", "bd", "be", "bf", "cd", "ce", "cf"].
+Note:
+
+Although the above answer is in lexicographical order, your answer could be in any order you want.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+class Solution {
+public:
+    vector<string> letterCombinations(string digits) {
+        string s[8] = {"abc", "def", "ghi", "jkl", "mno", "pqrs", "tuv", "wxyz"};
+        string tmp;
+        vector<string> ans;
+        if(digits.empty()) return ans;
+        DFS(0, tmp, s, digits, ans);
+        return ans;
+        
+    }
+    void DFS(int i, string tmp, string s[], string &digits, vector<string> &ans)
+    {
+        if(i == digits.size()) {
+            ans.push_back(tmp);
+            return;
+        }
+        int idx = digits[i] - '2', j;
+        for(j=0; j<s[idx].size(); j++){
+            tmp.push_back(s[idx][j]);
+            DFS(i+1, tmp, s, digits, ans);
+            tmp.pop_back();
+        }
+    }
+};

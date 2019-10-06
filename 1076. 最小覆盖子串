@@ -1,0 +1,49 @@
+// 滑动窗口
+1076. 最小覆盖子串
+
+给定一个字符串 S 和一个字符串 T，请在 S 中找出包含 T 所有字母的最小子串。
+
+示例：
+
+输入: S = "ADOBECODEBANC", T = "ABC"
+输出: "BANC"
+说明：
+
+如果 S 中不存这样的子串，则返回空字符串 ""。
+如果 S 中存在这样的子串，我们保证它是唯一的答案。
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+class Solution {
+public:
+    string minWindow(string s, string t) {
+        map<char, int> mp;
+        for(auto c : t){
+            if(mp.find(c) != mp.end())
+                mp[c]++;
+            else
+                mp[c] = 1;
+        }
+        int size = s.size(), cnt = t.size(), minLen = size+1; // minLen=size+1是因为有s==t的情况
+        string ans;
+        for(int i=0, j=0; j<size; j++){
+            if(mp.find(s[j]) != mp.end()){
+                mp[s[j]]--;
+                if(mp[s[j]] >= 0)
+                    cnt--;
+            }
+            while(cnt == 0){
+                if(j-i+1 < minLen){
+                    minLen = j-i+1;
+                    ans = s.substr(i, minLen);
+                }
+                if(mp.find(s[i]) != mp.end()){
+                    mp[s[i]]++;
+                    if(mp[s[i]] > 0)
+                        cnt++;
+                }
+                i++;
+            }
+        }
+        return ans;
+    }
+};

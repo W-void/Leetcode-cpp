@@ -1,0 +1,43 @@
+// 位运算进行除法
+1029.Divide Two Integers
+Return the quotient after dividing dividend by divisor.
+
+The integer division should truncate toward zero.
+
+Example 1:
+
+Input: dividend = 10, divisor = 3
+Output: 3
+Example 2:
+
+Input: dividend = 7, divisor = -3
+Output: -2
+Note:
+
+Both dividend and divisor will be 32-bit signed integers.
+The divisor will never be 0.
+Assume we are dealing with an environment which could only store integers within the 32-bit signed integer range: [−231,  231 − 1]. 
+For the purpose of this problem, assume that your function returns 231 − 1 when the division result overflows.
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+class Solution {
+public:
+    int divide(int dividend, int divisor) {
+        if(dividend == 1<<31 && divisor == -1) return (1<<31)-1;
+        int a = divisor, b = 0;
+        int f = (dividend<0) ^ (divisor<0) ? -1 : 1;
+        long long dvd = labs(dividend);
+        long long dvs = labs(divisor);
+        int d = 0;
+        while(dvd >= dvs){
+            long long tmp = dvs;
+            long long s = 1;
+            while(dvd >= (tmp<<1)){
+                tmp <<= 1;
+                s <<= 1;
+            }
+            dvd -= tmp;
+            d += s;
+        }
+        return f * d;
+    }
+};

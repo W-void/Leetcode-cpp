@@ -1,0 +1,51 @@
+1015. 3Sum
+
+Given an array nums of n integers, are there elements a, b, c in nums such that a + b + c = 0? Find all unique triplets in the array 
+which gives the sum of zero.
+
+Note:
+
+The solution set must not contain duplicate triplets.
+
+Example:
+
+Given array nums = [-1, 0, 1, 2, -1, -4],
+
+A solution set is:
+[
+  [-1, 0, 1],
+  [-1, -1, 2]
+]
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+class Solution {
+public:
+    vector<vector<int>> threeSum(vector<int>& nums) {
+        sort(nums.begin(), nums.end());
+        vector<vector<int> > ans;
+        vector<int> tmp;
+        int size = nums.size(), i;
+        for(i=0; i<size-2; i++){
+            if(i && nums[i] == nums[i-1]) continue;
+            int l = i + 1, r = size - 1, sum = -nums[i];
+            while(l < r){
+                if(nums[l] + nums[r] < sum)
+                    l++;
+                else if(nums[l] + nums[r] > sum)
+                    r--;
+                else{
+                    tmp.push_back(nums[i]);
+                    tmp.push_back(nums[l]);
+                    tmp.push_back(nums[r]);
+                    ans.push_back(tmp);
+                    tmp.clear();
+                    l++, r--;
+                    while(nums[l] == nums[l-1]) l++;
+                    while(nums[r] == nums[r+1]) r--;
+                }
+            }
+        }
+        return ans;
+        
+    }
+};

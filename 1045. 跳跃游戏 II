@@ -1,0 +1,49 @@
+// 动规超时，BFS 或 贪心
+1045. 跳跃游戏 II
+
+给定一个非负整数数组，你最初位于数组的第一个位置。
+
+数组中的每个元素代表你在该位置可以跳跃的最大长度。
+
+你的目标是使用最少的跳跃次数到达数组的最后一个位置。
+
+示例:
+
+输入: [2,3,1,1,4]
+输出: 2
+解释: 跳到最后一个位置的最小跳跃数是 2。
+     从下标为 0 跳到下标为 1 的位置，跳 1 步，然后跳 3 步到达数组的最后一个位置。
+说明:
+
+假设你总是可以到达数组的最后一个位置。
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+class Solution {
+public:
+    int jump(vector<int>& nums) {
+        // BFS O(n)
+        if(nums.size() == 1) return 0;
+        int i = 1, level = 1, currentMax = nums[0], nexMax = 0, size = nums.size();
+        while(currentMax-i>=0){
+            if(currentMax>=size-1) return level;
+            for(; i<=currentMax; i++){
+                nexMax = max(nexMax, nums[i]+i);
+            }
+            level++;
+            currentMax = nexMax;
+        }
+        return 0;
+        /*
+        动规O(n^2)
+        int size = nums.size();
+        vector<int> ans(size, 1<<30);
+        ans[size-1] = 0;
+        for(int j=size-2; j>=0; j--){
+            for(int i=1; i<=nums[j]; i++){
+                if(j+i>=size) break;
+                ans[j] = min(ans[j], ans[j+i] + 1);
+            }
+        }
+        return ans[0];
+        */
+    }
+};

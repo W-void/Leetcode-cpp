@@ -1,0 +1,50 @@
+// 动归
+5. Longest Palindromic Substring
+
+Given a string s, find the longest palindromic substring in s. You may assume that the maximum length of s is 1000.
+
+Example 1:
+
+Input: "babad"
+Output: "bab"
+Note: "aba" is also a valid answer.
+Example 2:
+
+Input: "cbbd"
+Output: "bb"
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+class Solution {
+public:
+    string longestPalindrome(string s) {
+        int len = s.length(), i, j, ans_i = 0, ans = 1, l; 
+        int dp[1000][1000] = {0};
+        for(i=0; i<len-1; i++){
+            dp[i][i] = 1;
+            if(s[i] == s[i+1]){
+                dp[i][i+1] = 1;
+                ans = 2, ans_i = i;
+            }
+        }
+        dp[i][i] = 1;
+        for(l=3; l<=len; l++){
+            if(ans - l > 2)//差2才能退出，因为有奇偶。
+                    break;
+            for(i=0; i<=len-l; i++){
+                j = i + l - 1;  
+                if(s[i] == s[j] && dp[i+1][j-1]){ 
+                    dp[i][j] = 1;
+                    ans = l, ans_i = i;
+                }
+            }
+            
+        }
+        return s.substr(ans_i, ans);
+        /*
+        1. 形式：s.substr(pos, n)  
+        2. 解释：返回一个string，包含s中从pos开始的n个字符的拷贝（pos的默认值是0，n的默认值是s.size() - pos，即不加参数会默认拷贝整个s）
+        3. 补充：若pos的值超过了string的大小，则substr函数会抛出一个out_of_range异常；
+                若pos+n的值超过了string的大小，则substr会调整n的值，只拷贝到string的末尾
+        /*
+    }
+};

@@ -1,0 +1,52 @@
+1037. Sudoku Solver
+Write a program to solve a Sudoku puzzle by filling the empty cells.
+
+A sudoku solution must satisfy all of the following rules:
+
+Each of the digits 1-9 must occur exactly once in each row.
+Each of the digits 1-9 must occur exactly once in each column.
+Each of the the digits 1-9 must occur exactly once in each of the 9 3x3 sub-boxes of the grid.
+Empty cells are indicated by the character '.'.
+
+
+A sudoku puzzle...
+
+
+...and its solution numbers marked in red.
+
+Note:
+
+The given board contain only digits 1-9 and the character '.'.
+You may assume that the given Sudoku puzzle will have a single unique solution.
+The given board size is always 9x9.
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+class Solution {
+public:
+    void solveSudoku(vector<vector<char>>& board) {
+        solveSudoku(board, 0, 0);
+    }
+    bool solveSudoku(vector<vector<char>>& board, int i, int j){
+        if(i == 9) return true;
+        if(j == 9) return solveSudoku(board, i+1, 0);
+        if(board[i][j] != '.') return solveSudoku(board, i, j+1);
+        
+        for(char c = '1'; c <= '9'; c++){
+            if(check(board, i, j, c)){
+                board[i][j] = c;
+                if(solveSudoku(board, i, j+1)) return true;
+                board[i][j] = '.';
+                
+            }
+        }
+        return false;
+    }
+    bool check(vector<vector<char>>& board, int i, int j, char c){
+        int x, y, r = (i/3)*3, cl = (j/3)*3;
+        for(x=0; x<9; x++) if(board[i][x] == c) return false;
+        for(y=0; y<9; y++) if(board[y][j] == c) return false;
+        for(x=0; x<3; x++)
+            for(y=0; y<3; y++)
+                if(board[r+x][cl+y] == c) return false;
+        return true;
+    }
+};

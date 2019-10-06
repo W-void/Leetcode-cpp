@@ -1,0 +1,28 @@
+// 单调栈
+/*
+给定 n 个非负整数，用来表示柱状图中各个柱子的高度。每个柱子彼此相邻，且宽度为 1 。
+
+求在该柱状图中，能够勾勒出来的矩形的最大面积。
+*/
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+class Solution {
+public:
+    int largestRectangleArea(vector<int>& heights) {
+        stack<int> S;
+        heights.push_back(0);
+        int len = heights.size(), i = 0, maxV = 0;
+        while(i<len){
+            if(S.empty() || heights[i] >= heights[S.top()]) 
+                S.push(i++);
+            else{
+                int tmp = S.top();
+                S.pop();
+                maxV = max(maxV, heights[tmp] * (S.empty() ? i : i-S.top()-1));
+                
+            }
+        }
+        return maxV;
+    }
+};
