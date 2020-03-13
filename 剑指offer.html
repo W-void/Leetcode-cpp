@@ -1,0 +1,1590 @@
+<!DOCTYPE html>
+    <html>
+    <head>
+        <meta charset="UTF-8">
+        <title>1. 数组中重复的数字</title>
+        
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Microsoft/vscode/extensions/markdown-language-features/media/markdown.css">
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Microsoft/vscode/extensions/markdown-language-features/media/highlight.css">
+        
+        <style>
+.task-list-item { list-style-type: none; } .task-list-item-checkbox { margin-left: -20px; vertical-align: middle; }
+</style>
+        <style>
+            body {
+                font-family: -apple-system, BlinkMacSystemFont, 'Segoe WPC', 'Segoe UI', 'Ubuntu', 'Droid Sans', sans-serif;
+                font-size: 14px;
+                line-height: 1.6;
+            }
+        </style>
+        
+        
+    </head>
+    <body class="vscode-light">
+        <ol>
+<li><a href="#1-%e6%95%b0%e7%bb%84%e4%b8%ad%e9%87%8d%e5%a4%8d%e7%9a%84%e6%95%b0%e5%ad%97">1. 数组中重复的数字</a></li>
+<li><a href="#2-%e4%ba%8c%e7%bb%b4%e6%95%b0%e7%bb%84%e4%b8%ad%e7%9a%84%e6%9f%a5%e6%89%be">2. 二维数组中的查找</a></li>
+<li><a href="#3-%e6%9b%bf%e6%8d%a2%e7%a9%ba%e6%a0%bc">3. 替换空格</a></li>
+<li><a href="#4-%e4%bb%8e%e5%b0%be%e5%88%b0%e5%a4%b4%e6%89%93%e5%8d%b0%e9%93%be%e8%a1%a8">4. 从尾到头打印链表</a></li>
+<li><a href="#5-%e9%87%8d%e5%bb%ba%e4%ba%8c%e5%8f%89%e6%a0%91">5. 重建二叉树</a></li>
+<li><a href="#6-%e4%ba%8c%e5%8f%89%e6%a0%91%e7%9a%84%e4%b8%8b%e4%b8%80%e4%b8%aa%e7%bb%93%e7%82%b9">6. 二叉树的下一个结点</a></li>
+<li><a href="#7-%e7%94%a8%e4%b8%a4%e4%b8%aa%e6%a0%88%e5%ae%9e%e7%8e%b0%e9%98%9f%e5%88%97">7. 用两个栈实现队列</a></li>
+<li><a href="#8-%e6%96%90%e6%b3%a2%e9%82%a3%e5%a5%91%e6%95%b0%e5%88%97">8. 斐波那契数列</a></li>
+<li><a href="#9-%e8%b7%b3%e5%8f%b0%e9%98%b6">9. 跳台阶</a></li>
+<li><a href="#10-%e5%8f%98%e6%80%81%e8%b7%b3%e5%8f%b0%e9%98%b6">10. 变态跳台阶</a></li>
+<li><a href="#11-%e7%9f%a9%e5%bd%a2%e8%a6%86%e7%9b%96">11. 矩形覆盖</a></li>
+<li><a href="#12-%e6%97%8b%e8%bd%ac%e6%95%b0%e7%bb%84%e7%9a%84%e6%9c%80%e5%b0%8f%e6%95%b0%e5%ad%97">12. 旋转数组的最小数字</a></li>
+<li><a href="#13-%e7%9f%a9%e9%98%b5%e4%b8%ad%e7%9a%84%e8%b7%af%e5%be%84">13. 矩阵中的路径</a></li>
+<li><a href="#14-%e6%9c%ba%e5%99%a8%e4%ba%ba%e7%9a%84%e8%bf%90%e5%8a%a8%e8%8c%83%e5%9b%b4">14. 机器人的运动范围</a></li>
+<li><a href="#15-%e5%89%aa%e7%bb%b3%e5%ad%90%e5%be%85%e5%ae%9a">15. 剪绳子（待定）</a></li>
+<li><a href="#16-%e4%ba%8c%e8%bf%9b%e5%88%b6%e4%b8%ad1%e7%9a%84%e4%b8%aa%e6%95%b0">16. 二进制中1的个数</a></li>
+<li><a href="#17-%e6%95%b0%e5%80%bc%e7%9a%84%e6%95%b4%e6%95%b0%e6%ac%a1%e6%96%b9">17. 数值的整数次方</a></li>
+<li><a href="#18-%e8%b0%83%e6%95%b4%e6%95%b0%e7%bb%84%e9%a1%ba%e5%ba%8f%e4%bd%bf%e5%a5%87%e6%95%b0%e4%bd%8d%e4%ba%8e%e5%81%b6%e6%95%b0%e5%89%8d%e9%9d%a2">18. 调整数组顺序使奇数位于偶数前面</a></li>
+<li><a href="#19-%e9%93%be%e8%a1%a8%e4%b8%ad%e5%80%92%e6%95%b0%e7%ac%ack%e4%b8%aa%e7%bb%93%e7%82%b9">19. 链表中倒数第k个结点</a></li>
+<li><a href="#20-%e9%93%be%e8%a1%a8%e4%b8%ad%e7%8e%af%e7%9a%84%e5%85%a5%e5%8f%a3%e7%bb%93%e7%82%b9">20. 链表中环的入口结点</a></li>
+<li><a href="#21-%e5%8f%8d%e8%bd%ac%e9%93%be%e8%a1%a8">21. 反转链表</a></li>
+<li><a href="#22-%e5%90%88%e5%b9%b6%e4%b8%a4%e4%b8%aa%e6%8e%92%e5%ba%8f%e7%9a%84%e9%93%be%e8%a1%a8">22. 合并两个排序的链表</a></li>
+<li><a href="#23-%e6%a0%91%e7%9a%84%e5%ad%90%e7%bb%93%e6%9e%84">23. 树的子结构</a></li>
+<li><a href="#24-%e4%ba%8c%e5%8f%89%e6%a0%91%e7%9a%84%e9%95%9c%e5%83%8f">24. 二叉树的镜像</a></li>
+<li><a href="#25-%e5%af%b9%e7%a7%b0%e7%9a%84%e4%ba%8c%e5%8f%89%e6%a0%91">25. 对称的二叉树</a></li>
+<li><a href="#26-%e9%a1%ba%e6%97%b6%e9%92%88%e6%89%93%e5%8d%b0%e7%9f%a9%e9%98%b5">26. 顺时针打印矩阵</a></li>
+<li><a href="#27-%e5%8c%85%e5%90%abmin%e5%87%bd%e6%95%b0%e7%9a%84%e6%a0%88">27. 包含min函数的栈</a></li>
+<li><a href="#28-%e6%a0%88%e7%9a%84%e5%8e%8b%e5%85%a5%e5%bc%b9%e5%87%ba%e5%ba%8f%e5%88%97">28. 栈的压入、弹出序列</a></li>
+<li><a href="#29-%e4%bb%8e%e4%b8%8a%e5%be%80%e4%b8%8b%e6%89%93%e5%8d%b0%e4%ba%8c%e5%8f%89%e6%a0%91">29. 从上往下打印二叉树</a></li>
+<li><a href="#30-%e4%ba%8c%e5%8f%89%e6%90%9c%e7%b4%a2%e6%a0%91%e7%9a%84%e5%90%8e%e5%ba%8f%e9%81%8d%e5%8e%86%e5%ba%8f%e5%88%97">30. 二叉搜索树的后序遍历序列</a></li>
+<li><a href="#31-%e4%ba%8c%e5%8f%89%e6%a0%91%e4%b8%ad%e5%92%8c%e4%b8%ba%e6%9f%90%e4%b8%80%e5%80%bc%e7%9a%84%e8%b7%af%e5%be%84">31. 二叉树中和为某一值的路径</a></li>
+<li><a href="#32-%e5%a4%8d%e6%9d%82%e9%93%be%e8%a1%a8%e7%9a%84%e5%a4%8d%e5%88%b6">32. 复杂链表的复制</a></li>
+<li><a href="#33-%e4%ba%8c%e5%8f%89%e6%90%9c%e7%b4%a2%e6%a0%91%e4%b8%8e%e5%8f%8c%e5%90%91%e9%93%be%e8%a1%a8">33. 二叉搜索树与双向链表</a></li>
+<li><a href="#34-%e6%95%b0%e6%8d%ae%e6%b5%81%e4%b8%ad%e7%9a%84%e4%b8%ad%e4%bd%8d%e6%95%b0">34. 数据流中的中位数</a></li>
+<li><a href="#35-%e8%bf%9e%e7%bb%ad%e5%ad%90%e6%95%b0%e7%bb%84%e7%9a%84%e6%9c%80%e5%a4%a7%e5%92%8c">35. 连续子数组的最大和</a></li>
+<li><a href="#36-%e6%95%b4%e6%95%b0%e4%b8%ad1%e5%87%ba%e7%8e%b0%e7%9a%84%e6%ac%a1%e6%95%b0">36. 整数中1出现的次数</a></li>
+<li><a href="#37-%e4%b8%91%e6%95%b0">37. 丑数</a></li>
+<li><a href="#38-%e6%95%b0%e7%bb%84%e4%b8%ad%e7%9a%84%e9%80%86%e5%ba%8f%e5%af%b9">38. 数组中的逆序对</a></li>
+<li><a href="#39%e4%b8%a4%e4%b8%aa%e9%93%be%e8%a1%a8%e7%9a%84%e7%ac%ac%e4%b8%80%e4%b8%aa%e5%85%ac%e5%85%b1%e7%bb%93%e7%82%b9">39.两个链表的第一个公共结点</a></li>
+<li><a href="#40-%e6%95%b0%e5%ad%97%e5%9c%a8%e6%8e%92%e5%ba%8f%e6%95%b0%e7%bb%84%e4%b8%ad%e5%87%ba%e7%8e%b0%e7%9a%84%e6%ac%a1%e6%95%b0">40. 数字在排序数组中出现的次数</a></li>
+<li><a href="#41-%e4%ba%8c%e5%8f%89%e6%a0%91%e7%9a%84%e6%b7%b1%e5%ba%a6">41. 二叉树的深度</a></li>
+<li><a href="#42-%e5%b9%b3%e8%a1%a1%e4%ba%8c%e5%8f%89%e6%a0%91">42. 平衡二叉树</a></li>
+<li><a href="#43-%e6%95%b0%e7%bb%84%e4%b8%ad%e5%8f%aa%e5%87%ba%e7%8e%b0%e4%b8%80%e6%ac%a1%e7%9a%84%e6%95%b0%e5%ad%97">43. 数组中只出现一次的数字</a></li>
+<li><a href="#44-%e5%92%8c%e4%b8%bas%e7%9a%84%e8%bf%9e%e7%bb%ad%e6%ad%a3%e6%95%b0%e5%ba%8f%e5%88%97">44. 和为S的连续正数序列</a></li>
+<li><a href="#45-%e7%bf%bb%e8%bd%ac%e5%8d%95%e8%af%8d%e9%a1%ba%e5%ba%8f%e5%88%97">45. 翻转单词顺序列</a></li>
+<li><a href="#46-%e5%b7%a6%e6%97%8b%e8%bd%ac%e5%ad%97%e7%ac%a6%e4%b8%b2">46. 左旋转字符串</a></li>
+<li><a href="#47-%e6%bb%91%e5%8a%a8%e7%aa%97%e5%8f%a3%e7%9a%84%e6%9c%80%e5%a4%a7%e5%80%bc">47. 滑动窗口的最大值</a></li>
+<li><a href="#48-%e4%ba%8c%e5%8f%89%e6%90%9c%e7%b4%a2%e6%a0%91%e7%9a%84%e7%ac%ack%e4%b8%aa%e7%bb%93%e7%82%b9">48. 二叉搜索树的第k个结点</a></li>
+<li><a href="#49-%e4%b8%8d%e7%94%a8%e5%8a%a0%e5%87%8f%e4%b9%98%e9%99%a4%e5%81%9a%e5%8a%a0%e6%b3%95">49. 不用加减乘除做加法</a></li>
+<li><a href="#50-%e6%9e%84%e5%bb%ba%e4%b9%98%e7%a7%af%e6%95%b0%e7%bb%84">50. 构建乘积数组</a></li>
+<li><a href="#51-%e4%ba%8c%e5%8f%89%e6%a0%91%e4%b8%a4%e7%bb%93%e7%82%b9%e7%9a%84%e6%9c%80%e4%bd%8e%e5%85%ac%e5%85%b1%e7%a5%96%e5%85%88%e7%bb%93%e7%82%b9">51. 二叉树两结点的最低公共祖先结点</a></li>
+</ol>
+<h1 id="1-%e6%95%b0%e7%bb%84%e4%b8%ad%e9%87%8d%e5%a4%8d%e7%9a%84%e6%95%b0%e5%ad%97">1. 数组中重复的数字</h1>
+<ul>
+<li>题目描述:<br>
+在一个长度为n的数组里的所有数字都在0到n-1的范围内。 数组中某些数字是重复的，但不知道有几个数字是重复的。也不知道每个数字重复几次。请找出数组中任意一个重复的数字。 例如，如果输入长度为7的数组{2,3,1,0,2,5,3}，那么对应的输出是第一个重复的数字2</li>
+<li>关键：数字都在0到n-1的范围内</li>
+</ul>
+<pre><code class="language-c"><div><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Solution</span> {</span>
+<span class="hljs-keyword">public</span>:
+    <span class="hljs-comment">// Parameters:</span>
+    <span class="hljs-comment">//        numbers:     an array of integers</span>
+    <span class="hljs-comment">//        length:      the length of array numbers</span>
+    <span class="hljs-comment">//        duplication: (Output) the duplicated number in the array number</span>
+    <span class="hljs-comment">// Return value:       true if the input is valid, and there are some duplications in the array number</span>
+    <span class="hljs-comment">//                     otherwise false</span>
+    <span class="hljs-function"><span class="hljs-keyword">bool</span> <span class="hljs-title">duplicate</span><span class="hljs-params">(<span class="hljs-keyword">int</span> numbers[], <span class="hljs-keyword">int</span> length, <span class="hljs-keyword">int</span>* duplication)</span> </span>{
+        <span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> i=<span class="hljs-number">0</span>; i&lt;length; i++){
+            <span class="hljs-keyword">while</span>(numbers[i] != i){
+                <span class="hljs-keyword">if</span>(numbers[numbers[i]] == numbers[i]){
+                    *duplication = numbers[i];
+                    <span class="hljs-keyword">return</span> <span class="hljs-literal">true</span>;
+                }
+                <span class="hljs-keyword">int</span> tmp = numbers[i];
+                numbers[i] = numbers[tmp];
+                numbers[tmp] = tmp;
+            }
+        }
+        <span class="hljs-keyword">return</span> <span class="hljs-literal">false</span>;
+    }
+};
+</div></code></pre>
+<h1 id="2-%e4%ba%8c%e7%bb%b4%e6%95%b0%e7%bb%84%e4%b8%ad%e7%9a%84%e6%9f%a5%e6%89%be">2. 二维数组中的查找</h1>
+<ul>
+<li>题目描述:<br>
+在一个二维数组中（每个一维数组的长度相同），每一行都按照从左到右递增的顺序排序，每一列都按照从上到下递增的顺序排序。请完成一个函数，输入这样的一个二维数组和一个整数，判断数组中是否含有该整数。</li>
+<li>思路：注意数组是有顺序的。从右上角开始比较，大于target就只可能在左边，小于就只能在下面。若从中间开始找就会很麻烦。</li>
+</ul>
+<pre><code class="language-c"><div><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Solution</span> {</span>
+<span class="hljs-keyword">public</span>:
+    <span class="hljs-function"><span class="hljs-keyword">bool</span> <span class="hljs-title">Find</span><span class="hljs-params">(<span class="hljs-keyword">int</span> target, <span class="hljs-built_in">vector</span>&lt;<span class="hljs-built_in">vector</span>&lt;<span class="hljs-keyword">int</span>&gt; &gt; <span class="hljs-built_in">array</span>)</span> </span>{
+        <span class="hljs-keyword">int</span> m = <span class="hljs-built_in">array</span>.size(), n = <span class="hljs-built_in">array</span>[<span class="hljs-number">0</span>].size();
+        <span class="hljs-keyword">int</span> r = <span class="hljs-number">0</span>, c = n<span class="hljs-number">-1</span>;
+        <span class="hljs-keyword">while</span>(r &lt; m &amp;&amp; c &gt;= <span class="hljs-number">0</span>){
+            <span class="hljs-keyword">if</span>(<span class="hljs-built_in">array</span>[r][c] == target)
+                <span class="hljs-keyword">return</span> <span class="hljs-literal">true</span>;
+            <span class="hljs-keyword">if</span>(<span class="hljs-built_in">array</span>[r][c] &gt; target)
+                c--;
+            <span class="hljs-keyword">else</span>
+                r++;
+        }
+        <span class="hljs-keyword">return</span> <span class="hljs-literal">false</span>;
+    }
+};
+</div></code></pre>
+<h1 id="3-%e6%9b%bf%e6%8d%a2%e7%a9%ba%e6%a0%bc">3. 替换空格</h1>
+<ul>
+<li>题目描述:<br>
+请实现一个函数，将一个字符串中的每个空格替换成“%20”。例如，当字符串为We Are Happy.则经过替换之后的字符串为We%20Are%20Happy。</li>
+<li>O(n)复杂度，先遍历一遍根据空格数计算出替换后的字符串长度，再从后往前复制字符。</li>
+</ul>
+<pre><code class="language-c"><div><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Solution</span> {</span>
+<span class="hljs-keyword">public</span>:
+	<span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">replaceSpace</span><span class="hljs-params">(<span class="hljs-keyword">char</span> *str,<span class="hljs-keyword">int</span> length)</span> </span>{
+        <span class="hljs-keyword">int</span> i = <span class="hljs-number">0</span>, j = <span class="hljs-number">0</span>, sum = <span class="hljs-number">0</span>;
+        <span class="hljs-keyword">while</span>(str[i] != <span class="hljs-number">0</span>){
+            <span class="hljs-keyword">if</span>(str[i++] == <span class="hljs-string">' '</span>)
+                sum++;
+        }
+        j = i + sum * <span class="hljs-number">2</span>; <span class="hljs-comment">//空格换为%20后的长度</span>
+        <span class="hljs-keyword">while</span>(i &gt;= <span class="hljs-number">0</span>){<span class="hljs-comment">//从后往前替换</span>
+            <span class="hljs-keyword">if</span>(str[i] != <span class="hljs-string">' '</span>)
+                str[j--] = str[i--];
+            <span class="hljs-keyword">else</span>{
+                str[j--] = <span class="hljs-string">'0'</span>;
+                str[j--] = <span class="hljs-string">'2'</span>;
+                str[j--] = <span class="hljs-string">'%'</span>;
+                i--;<span class="hljs-comment">//跳过空格</span>
+            }
+        }
+	}
+};
+</div></code></pre>
+<h1 id="4-%e4%bb%8e%e5%b0%be%e5%88%b0%e5%a4%b4%e6%89%93%e5%8d%b0%e9%93%be%e8%a1%a8">4. 从尾到头打印链表</h1>
+<ul>
+<li>题目描述:<br>
+输入一个链表，按链表值从尾到头的顺序返回一个ArrayList。</li>
+<li>思路：用栈，先进后出</li>
+</ul>
+<pre><code class="language-c++"><div><span class="hljs-comment">/**
+*  struct ListNode {
+*        int val;
+*        struct ListNode *next;
+*        ListNode(int x) :
+*              val(x), next(NULL) {
+*        }
+*  };
+*/</span>
+<span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Solution</span> {</span>
+<span class="hljs-keyword">public</span>:
+    <span class="hljs-built_in">vector</span>&lt;<span class="hljs-keyword">int</span>&gt; printListFromTailToHead(ListNode* head) {
+        <span class="hljs-built_in">stack</span>&lt;<span class="hljs-keyword">int</span>&gt; S;
+        <span class="hljs-keyword">while</span>(head){
+            S.push(head-&gt;val);
+            head = head-&gt;next;
+        }
+        <span class="hljs-built_in">vector</span>&lt;<span class="hljs-keyword">int</span>&gt; ans;
+        <span class="hljs-keyword">while</span>(!S.empty()){
+            ans.push_back(S.top());
+            S.pop();
+        }
+        <span class="hljs-keyword">return</span> ans;
+    }
+};
+</div></code></pre>
+<h1 id="5-%e9%87%8d%e5%bb%ba%e4%ba%8c%e5%8f%89%e6%a0%91">5. 重建二叉树</h1>
+<ul>
+<li>题目描述:<br>
+输入某二叉树的前序遍历和中序遍历的结果，请重建出该二叉树。假设输入的前序遍历和中序遍历的结果中都不含重复的数字。例如输入前序遍历序列{1,2,4,7,3,5,6,8}和中序遍历序列{4,7,2,1,5,3,8,6}，则重建二叉树并返回。</li>
+<li>递归</li>
+</ul>
+<pre><code class="language-c++"><div><span class="hljs-comment">/**
+ * Definition for binary tree
+ * struct TreeNode {
+ *     int val;
+ *     TreeNode *left;
+ *     TreeNode *right;
+ *     TreeNode(int x) : val(x), left(NULL), right(NULL) {}
+ * };
+ */</span>
+<span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Solution</span> {</span>
+<span class="hljs-keyword">public</span>:
+    <span class="hljs-function">TreeNode* <span class="hljs-title">reConstructBinaryTree</span><span class="hljs-params">(<span class="hljs-built_in">vector</span>&lt;<span class="hljs-keyword">int</span>&gt; pre,<span class="hljs-built_in">vector</span>&lt;<span class="hljs-keyword">int</span>&gt; vin)</span> </span>{
+        <span class="hljs-keyword">return</span> build_tree(pre, <span class="hljs-number">0</span>, pre.size()<span class="hljs-number">-1</span>, vin, <span class="hljs-number">0</span>, vin.size()<span class="hljs-number">-1</span>);
+    }
+    <span class="hljs-function">TreeNode* <span class="hljs-title">build_tree</span><span class="hljs-params">(<span class="hljs-built_in">vector</span>&lt;<span class="hljs-keyword">int</span>&gt; &amp;pre, <span class="hljs-keyword">int</span> pre_l, <span class="hljs-keyword">int</span> pre_r, <span class="hljs-built_in">vector</span>&lt;<span class="hljs-keyword">int</span>&gt; &amp;vin, <span class="hljs-keyword">int</span> vin_l, <span class="hljs-keyword">int</span> vin_r)</span></span>{
+        <span class="hljs-keyword">if</span>(pre_l &gt; pre_r) 
+            <span class="hljs-keyword">return</span> <span class="hljs-literal">nullptr</span>;
+        <span class="hljs-keyword">if</span>(pre_l == pre_r)
+            <span class="hljs-keyword">return</span> <span class="hljs-keyword">new</span> TreeNode(pre[pre_l]);
+        TreeNode *root = <span class="hljs-keyword">new</span> TreeNode(pre[pre_l]);
+        <span class="hljs-keyword">int</span> i = <span class="hljs-number">0</span>;
+        <span class="hljs-keyword">for</span>(;i+vin_l&lt;=vin_r; i++){
+            <span class="hljs-keyword">if</span>(vin[i+vin_l] == pre[pre_l])
+                <span class="hljs-keyword">break</span>;
+        }
+        root-&gt;left = build_tree(pre, pre_l+<span class="hljs-number">1</span>, pre_l+i, vin, vin_l, vin_l+i<span class="hljs-number">-1</span>);
+        root-&gt;right = build_tree(pre, pre_l+i+<span class="hljs-number">1</span>, pre_r, vin, vin_l+i+<span class="hljs-number">1</span>, vin_r);
+        <span class="hljs-keyword">return</span> root;
+    }
+};
+</div></code></pre>
+<h1 id="6-%e4%ba%8c%e5%8f%89%e6%a0%91%e7%9a%84%e4%b8%8b%e4%b8%80%e4%b8%aa%e7%bb%93%e7%82%b9">6. 二叉树的下一个结点</h1>
+<ul>
+<li>题目描述：<br>
+给定一个二叉树和其中的一个结点，请找出中序遍历顺序的下一个结点并且返回。注意，树中的结点不仅包含左右子结点，同时包含指向父结点的指针。</li>
+<li>解法：分两种情况，有右节点和没有右节点。有右节点：下一个节点就是右子树的最左边的节点。没有右节点：下一个节点就是（是父亲节点左子树的节点）</li>
+</ul>
+<pre><code class="language-c++"><div><span class="hljs-comment">/*
+struct TreeLinkNode {
+    int val;
+    struct TreeLinkNode *left;
+    struct TreeLinkNode *right;
+    struct TreeLinkNode *next;
+    TreeLinkNode(int x) :val(x), left(NULL), right(NULL), next(NULL) {
+        
+    }
+};
+*/</span>
+<span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Solution</span> {</span>
+<span class="hljs-keyword">public</span>:
+    <span class="hljs-function">TreeLinkNode* <span class="hljs-title">GetNext</span><span class="hljs-params">(TreeLinkNode* pNode)</span>
+    </span>{
+        <span class="hljs-keyword">if</span>(pNode-&gt;right){
+            TreeLinkNode* tmp = pNode-&gt;right;
+            <span class="hljs-keyword">while</span>(tmp-&gt;left)
+                tmp = tmp-&gt;left;
+            <span class="hljs-keyword">return</span> tmp;
+        }
+        <span class="hljs-keyword">while</span>(pNode-&gt;next &amp;&amp; pNode-&gt;next-&gt;left != pNode){<span class="hljs-comment">// 防止pNode-&gt;next为nullptr</span>
+            pNode = pNode-&gt;next;
+        }
+        <span class="hljs-keyword">return</span> pNode-&gt;next; 
+    }
+};
+</div></code></pre>
+<h1 id="7-%e7%94%a8%e4%b8%a4%e4%b8%aa%e6%a0%88%e5%ae%9e%e7%8e%b0%e9%98%9f%e5%88%97">7. 用两个栈实现队列</h1>
+<ul>
+<li>题目描述:<br>
+用两个栈来实现一个队列，完成队列的Push和Pop操作。 队列中的元素为int类型。</li>
+<li>思路：一个栈是先进后出，从一个栈出栈再入到第二个栈，第二个栈就是先进先出了，就完成了模拟队列。</li>
+</ul>
+<pre><code class="language-c++"><div><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Solution</span>
+{</span>
+<span class="hljs-keyword">public</span>:
+    <span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">push</span><span class="hljs-params">(<span class="hljs-keyword">int</span> node)</span> </span>{
+        stack1.push(node);
+    }
+
+    <span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">pop</span><span class="hljs-params">()</span> </span>{
+        <span class="hljs-keyword">if</span>(stack2.empty()){
+        <span class="hljs-comment">//stack2为空，就把stack1中的元素入栈到stack2中</span>
+            <span class="hljs-keyword">while</span>(!stack1.empty()){
+                stack2.push(stack1.top());
+                stack1.pop();
+            }
+        }
+        <span class="hljs-keyword">int</span> ans = stack2.top();
+        stack2.pop();
+        <span class="hljs-keyword">return</span> ans;
+    }
+
+<span class="hljs-keyword">private</span>:
+    <span class="hljs-built_in">stack</span>&lt;<span class="hljs-keyword">int</span>&gt; stack1;
+    <span class="hljs-built_in">stack</span>&lt;<span class="hljs-keyword">int</span>&gt; stack2;
+};
+</div></code></pre>
+<h1 id="8-%e6%96%90%e6%b3%a2%e9%82%a3%e5%a5%91%e6%95%b0%e5%88%97">8. 斐波那契数列</h1>
+<ul>
+<li>题目描述:<br>
+大家都知道斐波那契数列，现在要求输入一个整数n，请你输出斐波那契数列的第n项（从0开始，第0项为0）。n&lt;=39</li>
+<li>O(n)时间复杂度</li>
+</ul>
+<pre><code class="language-c++"><div><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Solution</span> {</span>
+<span class="hljs-keyword">public</span>:
+    <span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">Fibonacci</span><span class="hljs-params">(<span class="hljs-keyword">int</span> n)</span> </span>{
+        <span class="hljs-keyword">int</span> a = <span class="hljs-number">0</span>, b = <span class="hljs-number">1</span>, i = <span class="hljs-number">1</span>, tmp = <span class="hljs-number">0</span>;
+        <span class="hljs-keyword">if</span>(n == <span class="hljs-number">0</span>) <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;
+        <span class="hljs-keyword">if</span>(n == <span class="hljs-number">1</span>) <span class="hljs-keyword">return</span> <span class="hljs-number">1</span>;
+        <span class="hljs-keyword">while</span>(i++ &lt; n){
+            tmp = a; a = b; b = tmp + b;
+        }
+        <span class="hljs-keyword">return</span> b;
+
+    }
+};
+</div></code></pre>
+<h1 id="9-%e8%b7%b3%e5%8f%b0%e9%98%b6">9. 跳台阶</h1>
+<ul>
+<li>题目描述:<br>
+一只青蛙一次可以跳上1级台阶，也可以跳上2级。求该青蛙跳上一个n级的台阶总共有多少种跳法（先后次序不同算不同的结果）。</li>
+<li>解法：其实就是斐波那契数列，第n级台阶可以由第n-1级跳一步达到，也可以有第n-2级跳两步达到。</li>
+</ul>
+<pre><code class="language-c++"><div><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Solution</span> {</span>
+<span class="hljs-keyword">public</span>:
+    <span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">jumpFloor</span><span class="hljs-params">(<span class="hljs-keyword">int</span> number)</span> </span>{
+        <span class="hljs-keyword">if</span>(number == <span class="hljs-number">1</span>) <span class="hljs-keyword">return</span> <span class="hljs-number">1</span>;
+        <span class="hljs-keyword">int</span> a = <span class="hljs-number">1</span>, b = <span class="hljs-number">1</span>, i = <span class="hljs-number">1</span>, tmp = <span class="hljs-number">0</span>;
+        <span class="hljs-keyword">while</span>(i++ &lt; number){
+            tmp = a; a = b; b = tmp + b;
+        }
+        <span class="hljs-keyword">return</span> b;
+    }
+};
+</div></code></pre>
+<h1 id="10-%e5%8f%98%e6%80%81%e8%b7%b3%e5%8f%b0%e9%98%b6">10. 变态跳台阶</h1>
+<ul>
+<li>题目描述:<br>
+一只青蛙一次可以跳上1级台阶，也可以跳上2级……它也可以跳上n级。求该青蛙跳上一个n级的台阶总共有多少种跳法。</li>
+</ul>
+<pre><code class="language-c"><div><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Solution</span> {</span>
+<span class="hljs-keyword">public</span>:
+    <span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">jumpFloorII</span><span class="hljs-params">(<span class="hljs-keyword">int</span> number)</span> </span>{
+        <span class="hljs-keyword">return</span> <span class="hljs-number">1</span> &lt;&lt; (number - <span class="hljs-number">1</span>);
+    }
+};
+</div></code></pre>
+<h1 id="11-%e7%9f%a9%e5%bd%a2%e8%a6%86%e7%9b%96">11. 矩形覆盖</h1>
+<ul>
+<li>题目描述：<br>
+我们可以用2 * 1的小矩形横着或者竖着去覆盖更大的矩形。请问用n个2 * 1的小矩形无重叠地覆盖一个2 * n 的大矩形，总共有多少种方法？</li>
+<li>解法：也是斐波那契数列</li>
+</ul>
+<h1 id="12-%e6%97%8b%e8%bd%ac%e6%95%b0%e7%bb%84%e7%9a%84%e6%9c%80%e5%b0%8f%e6%95%b0%e5%ad%97">12. 旋转数组的最小数字</h1>
+<ul>
+<li>题目描述：<br>
+把一个数组最开始的若干个元素搬到数组的末尾，我们称之为数组的旋转。 输入一个非减排序的数组的一个旋转，输出旋转数组的最小元素。 例如数组{3,4,5,1,2}为{1,2,3,4,5}的一个旋转，该数组的最小值为1。 NOTE：给出的所有元素都大于0，若数组大小为0，请返回0。</li>
+<li>二分法查找</li>
+</ul>
+<pre><code class="language-c++"><div><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Solution</span> {</span>
+<span class="hljs-keyword">public</span>:
+    <span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">minNumberInRotateArray</span><span class="hljs-params">(<span class="hljs-built_in">vector</span>&lt;<span class="hljs-keyword">int</span>&gt; rotateArray)</span> </span>{
+        <span class="hljs-keyword">int</span> size = rotateArray.size();
+        <span class="hljs-keyword">if</span>(!size) <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;
+        <span class="hljs-keyword">int</span> left = <span class="hljs-number">0</span>, right = size<span class="hljs-number">-1</span>;
+        <span class="hljs-keyword">while</span>(left &lt; right){
+            <span class="hljs-keyword">int</span> mid = (left + right) &gt;&gt; <span class="hljs-number">1</span>;
+            <span class="hljs-keyword">if</span>(rotateArray[mid] &gt; rotateArray[right])
+                left = mid + <span class="hljs-number">1</span>;
+            <span class="hljs-keyword">else</span>
+                right = mid;
+        }
+        <span class="hljs-keyword">return</span> rotateArray[left];
+    }
+};
+</div></code></pre>
+<h1 id="13-%e7%9f%a9%e9%98%b5%e4%b8%ad%e7%9a%84%e8%b7%af%e5%be%84">13. 矩阵中的路径</h1>
+<ul>
+<li>题目描述:<br>
+请设计一个函数，用来判断在一个矩阵中是否存在一条包含某字符串所有字符的路径。路径可以从矩阵中的任意一个格子开始，每一步可以在矩阵中向左，向右，向上，向下移动一个格子。如果一条路径经过了矩阵中的某一个格子，则之后不能再次进入这个格子。 例如 a b c e s f c s a d e e 这样的3 X 4 矩阵中包含一条字符串&quot;bcced&quot;的路径，但是矩阵中不包含&quot;abcb&quot;路径，因为字符串的第一个字符b占据了矩阵中的第一行第二个格子之后，路径不能再次进入该格子。</li>
+<li>回溯法 -- 隐式图的深度优先搜索</li>
+</ul>
+<pre><code class="language-c++"><div><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Solution</span> {</span>
+<span class="hljs-keyword">public</span>:
+    <span class="hljs-function"><span class="hljs-keyword">bool</span> <span class="hljs-title">hasPath</span><span class="hljs-params">(<span class="hljs-keyword">char</span>* matrix, <span class="hljs-keyword">int</span> rows, <span class="hljs-keyword">int</span> cols, <span class="hljs-keyword">char</span>* str)</span>
+    </span>{
+        <span class="hljs-keyword">bool</span> *visit = <span class="hljs-keyword">new</span> <span class="hljs-keyword">bool</span>[rows * cols];
+        <span class="hljs-built_in">memset</span>(visit, <span class="hljs-number">0</span>, <span class="hljs-keyword">sizeof</span>(<span class="hljs-keyword">bool</span>) * rows * cols);
+        <span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> r=<span class="hljs-number">0</span>; r&lt;rows; r++){
+            <span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> c=<span class="hljs-number">0</span>; c&lt;cols; c++){
+                <span class="hljs-keyword">if</span>(judge(matrix, rows, cols, r, c, str, <span class="hljs-number">0</span>, visit)){
+                    <span class="hljs-keyword">delete</span>[] visit;
+                    <span class="hljs-keyword">return</span> <span class="hljs-literal">true</span>;
+                }
+            }
+        }
+        <span class="hljs-keyword">delete</span>[] visit;
+        <span class="hljs-keyword">return</span> <span class="hljs-literal">false</span>;
+    }
+    <span class="hljs-function"><span class="hljs-keyword">bool</span> <span class="hljs-title">judge</span><span class="hljs-params">(<span class="hljs-keyword">char</span> *matrix, <span class="hljs-keyword">int</span> rows, <span class="hljs-keyword">int</span> cols, <span class="hljs-keyword">int</span> r, <span class="hljs-keyword">int</span> c, 
+               <span class="hljs-keyword">char</span> *str, <span class="hljs-keyword">int</span> idx, <span class="hljs-keyword">bool</span> *visit)</span></span>{
+        <span class="hljs-keyword">if</span>(str[idx] == <span class="hljs-string">'\0'</span>) <span class="hljs-keyword">return</span> <span class="hljs-literal">true</span>;
+        <span class="hljs-keyword">if</span>(r &lt; <span class="hljs-number">0</span> || r &gt;= rows || c &lt; <span class="hljs-number">0</span> || c &gt;= cols) <span class="hljs-keyword">return</span> <span class="hljs-literal">false</span>;
+        <span class="hljs-keyword">if</span>(visit[r*cols+c]) <span class="hljs-keyword">return</span> <span class="hljs-literal">false</span>;
+        <span class="hljs-keyword">if</span>(matrix[r*cols+c] != str[idx]) <span class="hljs-keyword">return</span> <span class="hljs-literal">false</span>;
+        visit[r*cols+c] = <span class="hljs-literal">true</span>;
+        <span class="hljs-keyword">bool</span> has_subpath = judge(matrix, rows, cols, r+<span class="hljs-number">1</span>, c, str, idx+<span class="hljs-number">1</span>, visit)
+            || judge(matrix, rows, cols, r<span class="hljs-number">-1</span>, c, str, idx+<span class="hljs-number">1</span>, visit)
+            || judge(matrix, rows, cols, r, c+<span class="hljs-number">1</span>, str, idx+<span class="hljs-number">1</span>, visit)
+            || judge(matrix, rows, cols, r, c<span class="hljs-number">-1</span>, str, idx+<span class="hljs-number">1</span>, visit);
+        visit[r*cols+c] = <span class="hljs-literal">false</span>;
+        <span class="hljs-keyword">return</span> has_subpath;
+    }
+};
+</div></code></pre>
+<h1 id="14-%e6%9c%ba%e5%99%a8%e4%ba%ba%e7%9a%84%e8%bf%90%e5%8a%a8%e8%8c%83%e5%9b%b4">14. 机器人的运动范围</h1>
+<ul>
+<li>题目描述:<br>
+地上有一个m行和n列的方格。一个机器人从坐标0,0的格子开始移动，每一次只能向左，右，上，下四个方向移动一格，但是不能进入行坐标和列坐标的数位之和大于k的格子。 例如，当k为18时，机器人能够进入方格（35,37），因为3+5+3+7 = 18。但是，它不能进入方格（35,38），因为3+5+3+8 = 19。请问该机器人能够达到多少个格子？</li>
+<li>回溯法</li>
+</ul>
+<pre><code class="language-c++"><div><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Solution</span> {</span>
+<span class="hljs-keyword">public</span>:
+    <span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">movingCount</span><span class="hljs-params">(<span class="hljs-keyword">int</span> threshold, <span class="hljs-keyword">int</span> rows, <span class="hljs-keyword">int</span> cols)</span>
+    </span>{
+        <span class="hljs-keyword">bool</span> *visit = <span class="hljs-keyword">new</span> <span class="hljs-keyword">bool</span>[rows * cols];
+        <span class="hljs-built_in">memset</span>(visit, <span class="hljs-number">0</span>, <span class="hljs-keyword">sizeof</span>(<span class="hljs-keyword">bool</span>)*rows*cols);
+        <span class="hljs-keyword">int</span> count = moving_count(threshold, rows, cols, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, visit);
+        <span class="hljs-keyword">return</span> count;
+    }
+    <span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">moving_count</span><span class="hljs-params">(<span class="hljs-keyword">int</span> threshold, <span class="hljs-keyword">int</span> rows, <span class="hljs-keyword">int</span> cols, <span class="hljs-keyword">int</span> r, <span class="hljs-keyword">int</span> c, <span class="hljs-keyword">bool</span> *visit)</span></span>{
+        <span class="hljs-keyword">int</span> count = <span class="hljs-number">0</span>;
+        <span class="hljs-keyword">if</span>(r&lt;<span class="hljs-number">0</span> || r&gt;=rows || c&lt;<span class="hljs-number">0</span> || c&gt;=cols || visit[r*cols+c]) <span class="hljs-keyword">return</span> count;
+        <span class="hljs-keyword">if</span>(check(threshold, r, c)){
+            visit[r*cols+c] = <span class="hljs-literal">true</span>;
+            count = <span class="hljs-number">1</span> + moving_count(threshold, rows, cols, r+<span class="hljs-number">1</span>, c, visit)
+                + moving_count(threshold, rows, cols, r<span class="hljs-number">-1</span>, c, visit)
+                + moving_count(threshold, rows, cols, r, c+<span class="hljs-number">1</span>, visit)
+                + moving_count(threshold, rows, cols, r, c<span class="hljs-number">-1</span>, visit);
+            
+        }
+        <span class="hljs-keyword">return</span> count;
+    }
+    <span class="hljs-function"><span class="hljs-keyword">bool</span> <span class="hljs-title">check</span><span class="hljs-params">(<span class="hljs-keyword">int</span> threshold, <span class="hljs-keyword">int</span> r, <span class="hljs-keyword">int</span> c)</span></span>{
+        <span class="hljs-keyword">int</span> sum = <span class="hljs-number">0</span>;
+        <span class="hljs-keyword">while</span>(r){
+            sum += r % <span class="hljs-number">10</span>;
+            r /= <span class="hljs-number">10</span>;
+        }
+        <span class="hljs-keyword">while</span>(c){
+            sum += c % <span class="hljs-number">10</span>;
+            c /= <span class="hljs-number">10</span>;
+        }
+        <span class="hljs-keyword">return</span> sum &lt;= threshold;
+    }
+};
+</div></code></pre>
+<h1 id="15-%e5%89%aa%e7%bb%b3%e5%ad%90%e5%be%85%e5%ae%9a">15. 剪绳子（待定）</h1>
+<h1 id="16-%e4%ba%8c%e8%bf%9b%e5%88%b6%e4%b8%ad1%e7%9a%84%e4%b8%aa%e6%95%b0">16. 二进制中1的个数</h1>
+<ul>
+<li>题目描述：<br>
+输入一个整数，输出该数二进制表示中1的个数。其中负数用补码表示。</li>
+<li>解法：从低位依次右移数一，不要从高位往低位数，因为负数的符号位右移一直是1。</li>
+</ul>
+<pre><code class="language-c++"><div><span class="hljs-comment">// 解法一</span>
+<span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Solution</span> {</span>
+<span class="hljs-keyword">public</span>:
+     <span class="hljs-function"><span class="hljs-keyword">int</span>  <span class="hljs-title">NumberOf1</span><span class="hljs-params">(<span class="hljs-keyword">int</span> n)</span> </span>{
+         <span class="hljs-keyword">int</span> a = <span class="hljs-number">1</span>, sum = <span class="hljs-number">0</span>;
+         <span class="hljs-keyword">while</span>(a){
+             <span class="hljs-keyword">if</span>(n &amp; a)
+                 sum++;
+             a &lt;&lt;= <span class="hljs-number">1</span>;
+         }
+         <span class="hljs-keyword">return</span> sum;
+     }
+};
+<span class="hljs-comment">// 解法二  例：1100-1=1011， 1100 &amp; 1011 != 0</span>
+<span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Solution</span> {</span>
+<span class="hljs-keyword">public</span>:
+     <span class="hljs-function"><span class="hljs-keyword">int</span>  <span class="hljs-title">NumberOf1</span><span class="hljs-params">(<span class="hljs-keyword">int</span> n)</span> </span>{
+         <span class="hljs-keyword">int</span> a = <span class="hljs-number">1</span>, sum = <span class="hljs-number">0</span>;
+         <span class="hljs-keyword">while</span>(n){
+             sum++;
+             n = (n<span class="hljs-number">-1</span>) &amp; n;;
+         }
+         <span class="hljs-keyword">return</span> sum;
+     }
+};
+</div></code></pre>
+<h1 id="17-%e6%95%b0%e5%80%bc%e7%9a%84%e6%95%b4%e6%95%b0%e6%ac%a1%e6%96%b9">17. 数值的整数次方</h1>
+<ul>
+<li>题目描述:<br>
+给定一个double类型的浮点数base和int类型的整数exponent。求base的exponent次方。</li>
+<li>O(logn).要考虑负数的情况</li>
+</ul>
+<pre><code class="language-c"><div><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Solution</span> {</span>
+<span class="hljs-keyword">public</span>:
+    <span class="hljs-function"><span class="hljs-keyword">double</span> <span class="hljs-title">Power</span><span class="hljs-params">(<span class="hljs-keyword">double</span> base, <span class="hljs-keyword">int</span> exponent)</span> </span>{
+        <span class="hljs-keyword">if</span>(exponent == <span class="hljs-number">1</span>)
+            <span class="hljs-keyword">return</span> base;
+        <span class="hljs-keyword">if</span>(exponent == <span class="hljs-number">0</span>)
+            <span class="hljs-keyword">return</span> <span class="hljs-number">1</span>;
+        <span class="hljs-keyword">if</span>(base == <span class="hljs-number">0</span>)
+            <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;<span class="hljs-comment">//防止出现1/0</span>
+        <span class="hljs-keyword">int</span> flag = <span class="hljs-number">0</span>;
+        <span class="hljs-keyword">if</span>(exponent &lt; <span class="hljs-number">0</span>){
+            flag = <span class="hljs-number">1</span>;
+            exponent *= <span class="hljs-number">-1</span>;
+        }
+        <span class="hljs-keyword">double</span> ans = Power(base, exponent&gt;&gt;<span class="hljs-number">1</span>);
+        ans *= ans;
+        <span class="hljs-keyword">if</span>(exponent &amp; <span class="hljs-number">1</span>)
+            ans *= base;
+        <span class="hljs-keyword">if</span>(flag)
+            ans = <span class="hljs-number">1</span> / ans;
+        <span class="hljs-keyword">return</span> ans;
+    }
+};
+</div></code></pre>
+<h1 id="18-%e8%b0%83%e6%95%b4%e6%95%b0%e7%bb%84%e9%a1%ba%e5%ba%8f%e4%bd%bf%e5%a5%87%e6%95%b0%e4%bd%8d%e4%ba%8e%e5%81%b6%e6%95%b0%e5%89%8d%e9%9d%a2">18. 调整数组顺序使奇数位于偶数前面</h1>
+<ul>
+<li>题目描述:<br>
+输入一个整数数组，实现一个函数来调整该数组中数字的顺序，使得所有的奇数位于数组的前半部分，所有的偶数位于数组的后半部分，<strong>并保证奇数和奇数，偶数和偶数之间的相对位置不变</strong>。</li>
+<li>冒泡排序保持稳定性，插入排序也可以。注意，有没有黑体字的解法是不一样的。</li>
+</ul>
+<pre><code class="language-c++"><div><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Solution</span> {</span>
+<span class="hljs-keyword">public</span>:
+    <span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">reOrderArray</span><span class="hljs-params">(<span class="hljs-built_in">vector</span>&lt;<span class="hljs-keyword">int</span>&gt; &amp;<span class="hljs-built_in">array</span>)</span> </span>{
+        <span class="hljs-keyword">int</span> size = <span class="hljs-built_in">array</span>.size();
+        <span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> i=<span class="hljs-number">0</span>; i&lt;size; i++){
+            <span class="hljs-keyword">int</span> isSwap = <span class="hljs-number">0</span>;
+            <span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> j=size<span class="hljs-number">-1</span>; j&gt;i; j--){
+                <span class="hljs-keyword">if</span>((<span class="hljs-built_in">array</span>[j]&amp;<span class="hljs-number">1</span>) == <span class="hljs-number">1</span> &amp;&amp; (<span class="hljs-built_in">array</span>[j<span class="hljs-number">-1</span>]&amp;<span class="hljs-number">1</span>) == <span class="hljs-number">0</span>){
+                    swap(<span class="hljs-built_in">array</span>[j], <span class="hljs-built_in">array</span>[j<span class="hljs-number">-1</span>]);
+                    isSwap = <span class="hljs-number">1</span>;
+                }
+            }
+            <span class="hljs-keyword">if</span>(!isSwap)
+                <span class="hljs-keyword">break</span>;
+        }
+    }
+};
+</div></code></pre>
+<h1 id="19-%e9%93%be%e8%a1%a8%e4%b8%ad%e5%80%92%e6%95%b0%e7%ac%ack%e4%b8%aa%e7%bb%93%e7%82%b9">19. 链表中倒数第k个结点</h1>
+<ul>
+<li>题目描述:<br>
+输入一个链表，输出该链表中倒数第k个结点。</li>
+<li>双指针，让一个指针先走k-1步，再两个指针一起走。简单题要考虑鲁棒性。</li>
+</ul>
+<pre><code class="language-c++"><div><span class="hljs-comment">/*
+struct ListNode {
+	int val;
+	struct ListNode *next;
+	ListNode(int x) :
+			val(x), next(NULL) {
+	}
+};*/</span>
+<span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Solution</span> {</span>
+<span class="hljs-keyword">public</span>:
+    <span class="hljs-function">ListNode* <span class="hljs-title">FindKthToTail</span><span class="hljs-params">(ListNode* pListHead, <span class="hljs-keyword">unsigned</span> <span class="hljs-keyword">int</span> k)</span> </span>{
+        <span class="hljs-keyword">if</span>(k == <span class="hljs-number">0</span> || pListHead == <span class="hljs-literal">nullptr</span>) <span class="hljs-keyword">return</span> <span class="hljs-literal">nullptr</span>;
+        ListNode *left = pListHead, *right = pListHead;
+        <span class="hljs-keyword">while</span>(right != <span class="hljs-literal">nullptr</span> &amp;&amp; --k){
+            right = right-&gt;next;
+        }
+        <span class="hljs-keyword">if</span>(k) <span class="hljs-keyword">return</span> <span class="hljs-literal">nullptr</span>;
+        <span class="hljs-keyword">while</span>(right-&gt;next){
+            left = left-&gt;next;
+            right = right-&gt;next;
+        }
+        <span class="hljs-keyword">return</span> left;
+    }
+};
+</div></code></pre>
+<h1 id="20-%e9%93%be%e8%a1%a8%e4%b8%ad%e7%8e%af%e7%9a%84%e5%85%a5%e5%8f%a3%e7%bb%93%e7%82%b9">20. 链表中环的入口结点</h1>
+<ul>
+<li>题目描述:<br>
+给一个链表，若其中包含环，请找出该链表的环的入口结点，否则，输出null。</li>
+</ul>
+<pre><code class="language-c++"><div><span class="hljs-comment">/*
+struct ListNode {
+    int val;
+    struct ListNode *next;
+    ListNode(int x) :
+        val(x), next(NULL) {
+    }
+};
+*/</span>
+<span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Solution</span> {</span>
+<span class="hljs-keyword">public</span>:
+    <span class="hljs-function">ListNode* <span class="hljs-title">EntryNodeOfLoop</span><span class="hljs-params">(ListNode* pHead)</span>
+    </span>{
+        ListNode *fast = pHead, *slow = pHead;
+        <span class="hljs-keyword">int</span> flag = <span class="hljs-number">0</span>;
+        <span class="hljs-keyword">while</span>(fast &amp;&amp; fast-&gt;next){
+            fast = fast-&gt;next-&gt;next;
+            slow = slow-&gt;next;
+            <span class="hljs-keyword">if</span>(fast == slow){
+                flag = <span class="hljs-number">1</span>;
+                <span class="hljs-keyword">break</span>;
+            }
+        }
+        <span class="hljs-keyword">if</span>(flag == <span class="hljs-number">0</span>) <span class="hljs-keyword">return</span> <span class="hljs-literal">nullptr</span>;
+        slow = pHead;
+        <span class="hljs-keyword">while</span>(fast != slow){
+            fast = fast-&gt;next;
+            slow = slow-&gt;next;
+        }
+        <span class="hljs-keyword">return</span> fast;
+    }
+};
+</div></code></pre>
+<h1 id="21-%e5%8f%8d%e8%bd%ac%e9%93%be%e8%a1%a8">21. 反转链表</h1>
+<ul>
+<li>题目描述:<br>
+输入一个链表，反转链表后，输出新链表的表头。</li>
+</ul>
+<pre><code class="language-c++"><div><span class="hljs-comment">/*
+struct ListNode {
+	int val;
+	struct ListNode *next;
+	ListNode(int x) :
+			val(x), next(NULL) {
+	}
+};*/</span>
+<span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Solution</span> {</span>
+<span class="hljs-keyword">public</span>:
+    <span class="hljs-function">ListNode* <span class="hljs-title">ReverseList</span><span class="hljs-params">(ListNode* pHead)</span> </span>{
+        <span class="hljs-keyword">if</span>(!pHead) <span class="hljs-keyword">return</span> <span class="hljs-literal">nullptr</span>;
+        ListNode *first = <span class="hljs-literal">nullptr</span>, *second = pHead;
+        <span class="hljs-keyword">while</span>(second){
+            ListNode *third = second-&gt;next;
+            second-&gt;next = first;
+            first = second;
+            second = third;
+        }
+        <span class="hljs-keyword">return</span> first;
+    }
+};
+</div></code></pre>
+<h1 id="22-%e5%90%88%e5%b9%b6%e4%b8%a4%e4%b8%aa%e6%8e%92%e5%ba%8f%e7%9a%84%e9%93%be%e8%a1%a8">22. 合并两个排序的链表</h1>
+<ul>
+<li>题目描述:<br>
+输入两个单调递增的链表，输出两个链表合成后的链表，当然我们需要合成后的链表满足单调不减规则。</li>
+</ul>
+<pre><code class="language-c++"><div><span class="hljs-comment">/*
+struct ListNode {
+	int val;
+	struct ListNode *next;
+	ListNode(int x) :
+			val(x), next(NULL) {
+	}
+};*/</span>
+<span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Solution</span> {</span>
+<span class="hljs-keyword">public</span>:
+    <span class="hljs-function">ListNode* <span class="hljs-title">Merge</span><span class="hljs-params">(ListNode* pHead1, ListNode* pHead2)</span>
+    </span>{
+        ListNode *head = <span class="hljs-keyword">new</span> ListNode(<span class="hljs-number">0</span>);
+        ListNode *tmp = head;
+        <span class="hljs-keyword">while</span>(pHead1 &amp;&amp; pHead2){
+            <span class="hljs-keyword">if</span>(pHead1-&gt;val &lt; pHead2-&gt;val){
+                tmp-&gt;next = pHead1;
+                pHead1 = pHead1-&gt;next;
+            }
+            <span class="hljs-keyword">else</span>{
+                tmp-&gt;next = pHead2;
+                pHead2 = pHead2-&gt;next;
+            }
+            tmp = tmp-&gt;next;
+        }
+        <span class="hljs-keyword">if</span>(pHead1) tmp-&gt;next = pHead1;
+        <span class="hljs-keyword">else</span> tmp-&gt;next = pHead2;
+        <span class="hljs-keyword">return</span> head-&gt;next;
+    }
+};
+</div></code></pre>
+<h1 id="23-%e6%a0%91%e7%9a%84%e5%ad%90%e7%bb%93%e6%9e%84">23. 树的子结构</h1>
+<ul>
+<li>题目描述:
+输入两棵二叉树A，B，判断B是不是A的子结构。（ps：我们约定空树不是任意一个树的子结构）</li>
+</ul>
+<pre><code class="language-c++"><div><span class="hljs-comment">/*
+struct TreeNode {
+	int val;
+	struct TreeNode *left;
+	struct TreeNode *right;
+	TreeNode(int x) :
+			val(x), left(NULL), right(NULL) {
+	}
+};*/</span>
+<span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Solution</span> {</span>
+<span class="hljs-keyword">public</span>:
+    <span class="hljs-function"><span class="hljs-keyword">bool</span> <span class="hljs-title">HasSubtree</span><span class="hljs-params">(TreeNode* pRoot1, TreeNode* pRoot2)</span>
+    </span>{
+        <span class="hljs-keyword">if</span>(!pRoot1 || !pRoot2) <span class="hljs-keyword">return</span> <span class="hljs-literal">false</span>;
+        <span class="hljs-keyword">return</span> judge(pRoot1, pRoot2);
+    }
+    <span class="hljs-function"><span class="hljs-keyword">bool</span> <span class="hljs-title">judge</span><span class="hljs-params">(TreeNode* pRoot1, TreeNode* pRoot2)</span></span>{
+        <span class="hljs-keyword">if</span>(pRoot2 == <span class="hljs-literal">nullptr</span>) <span class="hljs-keyword">return</span> <span class="hljs-literal">true</span>;
+        <span class="hljs-keyword">if</span>(pRoot1 == <span class="hljs-literal">nullptr</span>) <span class="hljs-keyword">return</span> <span class="hljs-literal">false</span>;
+        <span class="hljs-keyword">bool</span> result = <span class="hljs-literal">false</span>;
+        <span class="hljs-keyword">if</span>(pRoot1-&gt;val == pRoot2-&gt;val){
+            result = judge(pRoot1-&gt;left, pRoot2-&gt;left)
+                &amp;&amp; judge(pRoot1-&gt;right, pRoot2-&gt;right);
+        }
+        <span class="hljs-keyword">if</span>(!result){
+            result = judge(pRoot1-&gt;left, pRoot2)
+                || judge(pRoot1-&gt;right, pRoot2);
+        }
+        <span class="hljs-keyword">return</span> result;
+    }
+};
+</div></code></pre>
+<h1 id="24-%e4%ba%8c%e5%8f%89%e6%a0%91%e7%9a%84%e9%95%9c%e5%83%8f">24. 二叉树的镜像</h1>
+<ul>
+<li>题目描述:<br>
+操作给定的二叉树，将其变换为源二叉树的镜像。</li>
+<li>扩展：用循环来做（模拟栈）。</li>
+</ul>
+<pre><code class="language-c++"><div>
+<span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Solution</span> {</span>
+<span class="hljs-keyword">public</span>:
+    <span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">Mirror</span><span class="hljs-params">(TreeNode *pRoot)</span> </span>{
+        <span class="hljs-keyword">if</span>(pRoot){
+            TreeNode *tmp = pRoot-&gt;left;
+            pRoot-&gt;left = pRoot-&gt;right;
+            pRoot-&gt;right = tmp;
+            Mirror(pRoot-&gt;right);
+            Mirror(pRoot-&gt;left);
+        }
+    }
+};
+</div></code></pre>
+<p>由于递归的本质是编译器生成了一个函数调用的栈，因此用循环来完成同样任务时，最简单的办法就是用一个辅助栈来模拟递归。首先把树的头结点放入栈中。在循环中，只要栈不为空，弹出栈的栈顶结点，交换它的左右子树。如果它有左子树，把它的左子树压入栈中；如果它有右子树，把它的右子树压入栈中。这样在下次循环中就能交换它儿子结点的左右子树了。</p>
+<pre><code class="language-c++"><div><span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">MirrorIteratively</span><span class="hljs-params">(BinaryTreeNode* pRoot)</span>
+</span>{
+    <span class="hljs-keyword">if</span> (pRoot == <span class="hljs-literal">NULL</span>)
+        <span class="hljs-keyword">return</span>;
+ 
+    <span class="hljs-built_in">std</span>::<span class="hljs-built_in">stack</span>&lt;BinaryTreeNode*&gt; stackTreeNode;
+    stackTreeNode.push(pRoot);
+ 
+    <span class="hljs-keyword">while</span> (stackTreeNode.size() &gt; <span class="hljs-number">0</span>)
+    {
+        BinaryTreeNode *pNode = stackTreeNode.top();
+        stackTreeNode.pop();
+ 
+        BinaryTreeNode *pTemp = pNode-&gt;m_pLeft;
+        pNode-&gt;m_pLeft = pNode-&gt;m_pRight;
+        pNode-&gt;m_pRight = pTemp;
+ 
+        <span class="hljs-keyword">if</span> (pNode-&gt;m_pLeft)
+            stackTreeNode.push(pNode-&gt;m_pLeft);
+ 
+        <span class="hljs-keyword">if</span> (pNode-&gt;m_pRight)
+            stackTreeNode.push(pNode-&gt;m_pRight);
+    }
+}
+</div></code></pre>
+<h1 id="25-%e5%af%b9%e7%a7%b0%e7%9a%84%e4%ba%8c%e5%8f%89%e6%a0%91">25. 对称的二叉树</h1>
+<ul>
+<li>题目描述:<br>
+请实现一个函数，用来判断一颗二叉树是不是对称的。注意，如果一个二叉树同此二叉树的镜像是同样的，定义其为对称的。</li>
+</ul>
+<pre><code class="language-c++"><div><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Solution</span> {</span>
+<span class="hljs-keyword">public</span>:
+    <span class="hljs-function"><span class="hljs-keyword">bool</span> <span class="hljs-title">isSymmetrical</span><span class="hljs-params">(TreeNode* pRoot)</span>
+    </span>{
+        <span class="hljs-keyword">if</span>(!pRoot) <span class="hljs-keyword">return</span> <span class="hljs-literal">true</span>;
+        <span class="hljs-keyword">return</span> judge(pRoot-&gt;left, pRoot-&gt;right);
+    }
+    <span class="hljs-function"><span class="hljs-keyword">bool</span> <span class="hljs-title">judge</span><span class="hljs-params">(TreeNode* left, TreeNode* right)</span></span>{
+        <span class="hljs-keyword">if</span>(!left &amp;&amp; !right) <span class="hljs-keyword">return</span> <span class="hljs-literal">true</span>;
+        <span class="hljs-keyword">if</span>((!left) ^ (!right)) <span class="hljs-keyword">return</span> <span class="hljs-literal">false</span>;
+        <span class="hljs-keyword">if</span>(left-&gt;val != right-&gt;val) <span class="hljs-keyword">return</span> <span class="hljs-literal">false</span>;
+        <span class="hljs-keyword">return</span> judge(left-&gt;left, right-&gt;right)
+            &amp;&amp; judge(left-&gt;right, right-&gt;left);
+    }
+};
+</div></code></pre>
+<h1 id="26-%e9%a1%ba%e6%97%b6%e9%92%88%e6%89%93%e5%8d%b0%e7%9f%a9%e9%98%b5">26. 顺时针打印矩阵</h1>
+<ul>
+<li>题目描述:<br>
+输入一个矩阵，按照从外向里以顺时针的顺序依次打印出每一个数字，例如，如果输入如下4 X 4矩阵： 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 则依次打印出数字1,2,3,4,8,12,16,15,14,13,9,5,6,7,11,10.</li>
+</ul>
+<pre><code class="language-c++"><div><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Solution</span> {</span>
+<span class="hljs-keyword">public</span>:
+    <span class="hljs-built_in">vector</span>&lt;<span class="hljs-keyword">int</span>&gt; printMatrix(<span class="hljs-built_in">vector</span>&lt;<span class="hljs-built_in">vector</span>&lt;<span class="hljs-keyword">int</span>&gt; &gt; matrix) {
+        <span class="hljs-built_in">vector</span>&lt;<span class="hljs-keyword">int</span>&gt; ans;
+        <span class="hljs-keyword">if</span>(matrix.empty()) <span class="hljs-keyword">return</span> ans;
+        <span class="hljs-keyword">int</span> rows = matrix.size(), cols = matrix[<span class="hljs-number">0</span>].size();
+        <span class="hljs-keyword">int</span> r = <span class="hljs-number">0</span>, c = <span class="hljs-number">0</span>, left = <span class="hljs-number">0</span>, up = <span class="hljs-number">0</span>, right = cols<span class="hljs-number">-1</span>, down = rows<span class="hljs-number">-1</span>;
+        <span class="hljs-keyword">while</span>(<span class="hljs-number">1</span>){
+            <span class="hljs-keyword">for</span>(c = up; c&lt;=right; c++) 
+                ans.push_back(matrix[up][c]);
+            <span class="hljs-keyword">if</span>(++up &gt; down) <span class="hljs-keyword">break</span>;
+            <span class="hljs-keyword">for</span>(r = up; r&lt;=down; r++)
+                ans.push_back(matrix[r][right]);
+            <span class="hljs-keyword">if</span>(--right &lt; left) <span class="hljs-keyword">break</span>;
+            <span class="hljs-keyword">for</span>(c = right; c&gt;=left; c--){
+                ans.push_back(matrix[down][c]);
+            }
+            <span class="hljs-keyword">if</span>(--down &lt; up) <span class="hljs-keyword">break</span>;
+            <span class="hljs-keyword">for</span>(r = down; r&gt;=up; r--){
+                ans.push_back(matrix[r][left]);
+            }
+            <span class="hljs-keyword">if</span>(++left &gt; right) <span class="hljs-keyword">break</span>;
+        }
+        <span class="hljs-keyword">return</span> ans;
+    }
+};
+</div></code></pre>
+<h1 id="27-%e5%8c%85%e5%90%abmin%e5%87%bd%e6%95%b0%e7%9a%84%e6%a0%88">27. 包含min函数的栈</h1>
+<ul>
+<li>题目描述:<br>
+定义栈的数据结构，请在该类型中实现一个能够得到栈中所含最小元素的min函数（时间复杂度应为O（1））。</li>
+</ul>
+<pre><code class="language-c++"><div><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Solution</span> {</span>
+<span class="hljs-keyword">public</span>:
+
+    <span class="hljs-built_in">stack</span>&lt;<span class="hljs-keyword">int</span>&gt; st;
+    <span class="hljs-built_in">stack</span>&lt;<span class="hljs-keyword">int</span>&gt; minst;
+
+    <span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">push</span><span class="hljs-params">(<span class="hljs-keyword">int</span> value)</span> </span>{
+        st.push(value);
+        <span class="hljs-keyword">if</span>(minst.empty() || minst.top()&gt;value) minst.push(value);
+        <span class="hljs-keyword">else</span> minst.push(minst.top());
+    }
+    <span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">pop</span><span class="hljs-params">()</span> </span>{
+        <span class="hljs-keyword">if</span>(!st.empty()){
+            st.pop();
+            minst.pop();
+        }
+    }
+    <span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">top</span><span class="hljs-params">()</span> </span>{
+        <span class="hljs-keyword">return</span> st.top();
+    }
+    <span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">min</span><span class="hljs-params">()</span> </span>{
+        <span class="hljs-keyword">return</span> minst.top();
+    }
+};
+</div></code></pre>
+<h1 id="28-%e6%a0%88%e7%9a%84%e5%8e%8b%e5%85%a5%e5%bc%b9%e5%87%ba%e5%ba%8f%e5%88%97">28. 栈的压入、弹出序列</h1>
+<ul>
+<li>题目描述:<br>
+输入两个整数序列，第一个序列表示栈的压入顺序，请判断第二个序列是否可能为该栈的弹出顺序。假设压入栈的所有数字均不相等。例如序列1,2,3,4,5是某栈的压入顺序，序列4,5,3,2,1是该压栈序列对应的一个弹出序列，但4,3,5,1,2就不可能是该压栈序列的弹出序列。（注意：这两个序列的长度是相等的）</li>
+</ul>
+<pre><code class="language-c++"><div><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Solution</span> {</span>
+<span class="hljs-keyword">public</span>:
+    <span class="hljs-function"><span class="hljs-keyword">bool</span> <span class="hljs-title">IsPopOrder</span><span class="hljs-params">(<span class="hljs-built_in">vector</span>&lt;<span class="hljs-keyword">int</span>&gt; pushV,<span class="hljs-built_in">vector</span>&lt;<span class="hljs-keyword">int</span>&gt; popV)</span> </span>{
+        <span class="hljs-built_in">stack</span>&lt;<span class="hljs-keyword">int</span>&gt; st;
+        <span class="hljs-keyword">int</span> i = <span class="hljs-number">0</span>, j = <span class="hljs-number">0</span>, size1 = pushV.size(), size2 = popV.size();
+        <span class="hljs-keyword">if</span>(size1 != size2) <span class="hljs-keyword">return</span> <span class="hljs-literal">false</span>;
+        <span class="hljs-keyword">for</span>(; i&lt;size1; i++){
+            st.push(pushV[i]);
+            <span class="hljs-keyword">while</span>(st.top() == popV[j]){
+                st.pop();
+                j++;
+                <span class="hljs-keyword">if</span>(st.empty()) <span class="hljs-keyword">break</span>;
+            }
+        }
+        <span class="hljs-keyword">return</span> st.empty();
+    }
+};
+</div></code></pre>
+<h1 id="29-%e4%bb%8e%e4%b8%8a%e5%be%80%e4%b8%8b%e6%89%93%e5%8d%b0%e4%ba%8c%e5%8f%89%e6%a0%91">29. 从上往下打印二叉树</h1>
+<ul>
+<li>题目描述:<br>
+从上往下打印出二叉树的每个节点，同层节点从左至右打印。</li>
+</ul>
+<pre><code class="language-c++"><div><span class="hljs-comment">/*
+struct TreeNode {
+	int val;
+	struct TreeNode *left;
+	struct TreeNode *right;
+	TreeNode(int x) :
+			val(x), left(NULL), right(NULL) {
+	}
+};*/</span>
+<span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Solution</span> {</span>
+<span class="hljs-keyword">public</span>:
+    <span class="hljs-built_in">vector</span>&lt;<span class="hljs-keyword">int</span>&gt; PrintFromTopToBottom(TreeNode* root) {
+        <span class="hljs-built_in">vector</span>&lt;<span class="hljs-keyword">int</span>&gt; ans;
+        <span class="hljs-keyword">if</span>(root == <span class="hljs-literal">nullptr</span>) <span class="hljs-keyword">return</span> ans;
+        <span class="hljs-built_in">queue</span>&lt;TreeNode*&gt; q;
+        q.push(root);
+        TreeNode *tmp;
+        <span class="hljs-keyword">while</span>(!q.empty()){
+            tmp = q.front();
+            q.pop();
+            ans.push_back(tmp-&gt;val);
+            <span class="hljs-keyword">if</span>(tmp-&gt;left) q.push(tmp-&gt;left);
+            <span class="hljs-keyword">if</span>(tmp-&gt;right) q.push(tmp-&gt;right);
+        }
+        <span class="hljs-keyword">return</span> ans;
+    }
+};
+</div></code></pre>
+<h1 id="30-%e4%ba%8c%e5%8f%89%e6%90%9c%e7%b4%a2%e6%a0%91%e7%9a%84%e5%90%8e%e5%ba%8f%e9%81%8d%e5%8e%86%e5%ba%8f%e5%88%97">30. 二叉搜索树的后序遍历序列</h1>
+<ul>
+<li>题目描述:<br>
+输入一个整数数组，判断该数组是不是某二叉搜索树的后序遍历的结果。如果是则输出Yes,否则输出No。假设输入的数组的任意两个数字都互不相同。</li>
+<li>解法：后序遍历根节点在最后，根据根节点将数组分为左右两部分（若无法分成两部分，则不是搜索树），再递归检查左右子树。</li>
+</ul>
+<pre><code class="language-c++"><div><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Solution</span> {</span>
+<span class="hljs-keyword">public</span>:
+    <span class="hljs-function"><span class="hljs-keyword">bool</span> <span class="hljs-title">VerifySquenceOfBST</span><span class="hljs-params">(<span class="hljs-built_in">vector</span>&lt;<span class="hljs-keyword">int</span>&gt; sequence)</span> </span>{
+        <span class="hljs-keyword">if</span>(sequence.empty()) <span class="hljs-keyword">return</span> <span class="hljs-literal">false</span>;
+        <span class="hljs-keyword">return</span> judge(sequence, <span class="hljs-number">0</span>, sequence.size()<span class="hljs-number">-1</span>);
+    }
+    <span class="hljs-function"><span class="hljs-keyword">bool</span> <span class="hljs-title">judge</span><span class="hljs-params">(<span class="hljs-built_in">vector</span>&lt;<span class="hljs-keyword">int</span>&gt; &amp;vec, <span class="hljs-keyword">int</span> left, <span class="hljs-keyword">int</span> right)</span></span>{
+        <span class="hljs-keyword">if</span>(left &gt;= right) <span class="hljs-keyword">return</span> <span class="hljs-literal">true</span>;
+        <span class="hljs-keyword">int</span> root = vec[right];
+        <span class="hljs-keyword">int</span> i=<span class="hljs-number">0</span>, j=right<span class="hljs-number">-1</span>;
+        <span class="hljs-keyword">while</span>(vec[i] &lt; root) i++;
+        <span class="hljs-keyword">while</span>(vec[j] &gt; root) j--;
+        <span class="hljs-keyword">if</span>(i &lt;= j) <span class="hljs-keyword">return</span> <span class="hljs-literal">false</span>;
+        <span class="hljs-keyword">return</span> judge(vec, left, i<span class="hljs-number">-1</span>) &amp;&amp; judge(vec, j+<span class="hljs-number">1</span>, right<span class="hljs-number">-1</span>);
+    }
+};
+</div></code></pre>
+<h1 id="31-%e4%ba%8c%e5%8f%89%e6%a0%91%e4%b8%ad%e5%92%8c%e4%b8%ba%e6%9f%90%e4%b8%80%e5%80%bc%e7%9a%84%e8%b7%af%e5%be%84">31. 二叉树中和为某一值的路径</h1>
+<ul>
+<li>题目描述:<br>
+输入一颗二叉树的跟节点和一个整数，打印出二叉树中结点值的和为输入整数的所有路径。路径定义为从树的根结点开始往下一直到叶结点所经过的结点形成一条路径。</li>
+</ul>
+<pre><code class="language-c++"><div><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Solution</span> {</span>
+<span class="hljs-keyword">public</span>:
+    <span class="hljs-built_in">vector</span>&lt;<span class="hljs-built_in">vector</span>&lt;<span class="hljs-keyword">int</span>&gt; &gt; ans;
+    <span class="hljs-built_in">vector</span>&lt;<span class="hljs-keyword">int</span>&gt; tmp;
+    <span class="hljs-built_in">vector</span>&lt;<span class="hljs-built_in">vector</span>&lt;<span class="hljs-keyword">int</span>&gt; &gt; FindPath(TreeNode* root,<span class="hljs-keyword">int</span> expectNumber) {
+        <span class="hljs-keyword">if</span>(root == <span class="hljs-literal">nullptr</span>) <span class="hljs-keyword">return</span> ans;
+        dfs(root, expectNumber);
+        <span class="hljs-keyword">return</span> ans;
+    }
+    <span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">dfs</span><span class="hljs-params">(TreeNode* root,<span class="hljs-keyword">int</span> expectNumber)</span></span>{
+        tmp.push_back(root-&gt;val);
+        <span class="hljs-keyword">if</span>(root-&gt;val == expectNumber &amp;&amp; !root-&gt;left &amp;&amp; !root-&gt;right)
+            ans.push_back(tmp);
+        expectNumber -= root-&gt;val;
+        <span class="hljs-keyword">if</span>(root-&gt;left) dfs(root-&gt;left, expectNumber);
+        <span class="hljs-keyword">if</span>(root-&gt;right) dfs(root-&gt;right, expectNumber);
+        tmp.pop_back();
+    }
+};
+</div></code></pre>
+<h1 id="32-%e5%a4%8d%e6%9d%82%e9%93%be%e8%a1%a8%e7%9a%84%e5%a4%8d%e5%88%b6">32. 复杂链表的复制</h1>
+<ul>
+<li>题目描述:<br>
+输入一个复杂链表（每个节点中有节点值，以及两个指针，一个指向下一个节点，另一个特殊指针指向任意一个节点），返回结果为复制后复杂链表的head。（注意，输出结果中请不要返回参数中的节点引用，否则判题程序会直接返回空）</li>
+<li>方法一：先按next复制节点，用哈希表将复制前后的节点一一对应起来，这样就可以用O(1)的时间复杂度找到random节点。</li>
+<li>方法二：第一步，将复制节点连在旧节点后面；第二步，复制random节点；第三步，剪开。</li>
+</ul>
+<pre><code class="language-c++"><div><span class="hljs-comment">/*
+struct RandomListNode {
+    int label;
+    struct RandomListNode *next, *random;
+    RandomListNode(int x) :
+            label(x), next(NULL), random(NULL) {
+    }
+};
+*/</span>
+<span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Solution</span> {</span>
+<span class="hljs-keyword">public</span>:
+    <span class="hljs-function">RandomListNode* <span class="hljs-title">Clone</span><span class="hljs-params">(RandomListNode* pHead)</span>
+    </span>{
+        <span class="hljs-keyword">if</span>(!pHead) <span class="hljs-keyword">return</span> <span class="hljs-literal">nullptr</span>;
+        CloneNode(pHead);
+        ConnectRandomNode(pHead);
+        <span class="hljs-keyword">return</span> ReconnectNode(pHead);
+    }
+    <span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">CloneNode</span><span class="hljs-params">(RandomListNode* pHead)</span></span>{
+        <span class="hljs-keyword">while</span>(pHead){
+            RandomListNode* pClone = <span class="hljs-keyword">new</span> RandomListNode(pHead-&gt;label);
+            pClone-&gt;next = pHead-&gt;next;
+            pHead-&gt;next = pClone;
+            pHead = pClone-&gt;next;
+        }
+    }
+    <span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">ConnectRandomNode</span><span class="hljs-params">(RandomListNode* pHead)</span></span>{
+        <span class="hljs-keyword">while</span>(pHead){
+            <span class="hljs-keyword">if</span>(pHead-&gt;random)
+                pHead-&gt;next-&gt;random = pHead-&gt;random-&gt;next;
+            pHead = pHead-&gt;next-&gt;next;
+        }
+    }
+    <span class="hljs-function">RandomListNode* <span class="hljs-title">ReconnectNode</span><span class="hljs-params">(RandomListNode* pHead)</span></span>{
+        RandomListNode* pCloneHead = pHead-&gt;next;
+        RandomListNode* pCloneNode = pCloneHead;
+        pHead-&gt;next = pCloneHead-&gt;next;
+        pHead = pHead-&gt;next;
+        <span class="hljs-keyword">while</span>(pHead){
+            pCloneNode-&gt;next = pHead-&gt;next;
+            pHead-&gt;next = pHead-&gt;next-&gt;next;
+            pHead = pHead-&gt;next;
+            pCloneNode = pCloneNode-&gt;next;
+        }
+        <span class="hljs-keyword">return</span> pCloneHead;
+    }
+};
+</div></code></pre>
+<h1 id="33-%e4%ba%8c%e5%8f%89%e6%90%9c%e7%b4%a2%e6%a0%91%e4%b8%8e%e5%8f%8c%e5%90%91%e9%93%be%e8%a1%a8">33. 二叉搜索树与双向链表</h1>
+<ul>
+<li>题目描述:<br>
+输入一棵二叉搜索树，将该二叉搜索树转换成一个排序的双向链表。要求不能创建任何新的结点，只能调整树中结点指针的指向。</li>
+<li>众所周知，BST的中序遍历是顺序的。我想到的方法是：中序遍历，将树的节点依次存入一个数组，再把节点连起来。书上给的方法不需要额外的空间。</li>
+</ul>
+<pre><code class="language-c++"><div><span class="hljs-comment">/*
+struct TreeNode {
+	int val;
+	struct TreeNode *left;
+	struct TreeNode *right;
+	TreeNode(int x) :
+			val(x), left(NULL), right(NULL) {
+	}
+};*/</span>
+<span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Solution</span> {</span>
+<span class="hljs-keyword">public</span>:
+    <span class="hljs-function">TreeNode* <span class="hljs-title">Convert</span><span class="hljs-params">(TreeNode* pRootOfTree)</span>
+    </span>{
+        <span class="hljs-keyword">if</span>(!pRootOfTree) <span class="hljs-keyword">return</span> <span class="hljs-literal">nullptr</span>;
+        TreeNode *pLastNodeInList = <span class="hljs-literal">nullptr</span>;
+        ConvertNode(pRootOfTree, &amp;pLastNodeInList);
+        
+        <span class="hljs-keyword">while</span>(pLastNodeInList &amp;&amp; pLastNodeInList-&gt;left){
+            pLastNodeInList = pLastNodeInList-&gt;left;
+        }
+        <span class="hljs-keyword">return</span> pLastNodeInList;
+    }
+    <span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">ConvertNode</span><span class="hljs-params">(TreeNode* root, TreeNode** pLastNodeInList)</span></span>{
+        <span class="hljs-keyword">if</span>(root-&gt;left)<span class="hljs-comment">//先找到最左端的叶子结点，连接左子树</span>
+            ConvertNode(root-&gt;left, pLastNodeInList);
+        root-&gt;left = *pLastNodeInList;
+        <span class="hljs-keyword">if</span>(*pLastNodeInList)
+            (*pLastNodeInList)-&gt;right = root;
+        *pLastNodeInList = root;
+        <span class="hljs-keyword">if</span>(root-&gt;right){<span class="hljs-comment">//连接右子树</span>
+            ConvertNode(root-&gt;right, pLastNodeInList);
+        }
+    }
+};
+</div></code></pre>
+<h1 id="34-%e6%95%b0%e6%8d%ae%e6%b5%81%e4%b8%ad%e7%9a%84%e4%b8%ad%e4%bd%8d%e6%95%b0">34. 数据流中的中位数</h1>
+<ul>
+<li>题目描述:<br>
+如何得到一个数据流中的中位数？如果从数据流中读出奇数个数值，那么中位数就是所有数值排序之后位于中间的数值。如果从数据流中读出偶数个数值，那么中位数就是所有数值排序之后中间两个数的平均值。我们使用Insert()方法读取数据流，使用GetMedian()方法获取当前读取数据的中位数。</li>
+</ul>
+<pre><code class="language-c++"><div><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Solution</span> {</span>
+<span class="hljs-keyword">private</span>:
+    <span class="hljs-built_in">vector</span>&lt;<span class="hljs-keyword">int</span>&gt; max;
+    <span class="hljs-built_in">vector</span>&lt;<span class="hljs-keyword">int</span>&gt; min;
+<span class="hljs-keyword">public</span>:
+    <span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">Insert</span><span class="hljs-params">(<span class="hljs-keyword">int</span> num)</span>
+    </span>{<span class="hljs-comment">//为保持平衡，偶数放右侧，奇数放左侧</span>
+        <span class="hljs-keyword">if</span>(((min.size()+max.size()) &amp; <span class="hljs-number">1</span>) == <span class="hljs-number">0</span>){<span class="hljs-comment">//偶数放入右侧，最小堆</span>
+            <span class="hljs-keyword">if</span>(max.size() &amp;&amp; num &lt; max[<span class="hljs-number">0</span>]){<span class="hljs-comment">//num小于左侧最大值，要放入左侧最大堆</span>
+                max.push_back(num);
+                push_heap(max.begin(), max.end(), less&lt;<span class="hljs-keyword">int</span>&gt;());
+                num = max[<span class="hljs-number">0</span>];
+                pop_heap(max.begin(), max.end(), less&lt;<span class="hljs-keyword">int</span>&gt;());
+                max.pop_back();
+            }
+            min.push_back(num);
+            push_heap(min.begin(), min.end(), greater&lt;<span class="hljs-keyword">int</span>&gt;());
+        }
+        <span class="hljs-keyword">else</span>{<span class="hljs-comment">//奇数放入左侧，最大推</span>
+            <span class="hljs-keyword">if</span>(max.size() &amp;&amp; num &gt; max[<span class="hljs-number">0</span>]){<span class="hljs-comment">// num大于右侧最小值，要放入右侧最小堆</span>
+                min.push_back(num);
+                push_heap(min.begin(), min.end(), greater&lt;<span class="hljs-keyword">int</span>&gt;());
+                num = min[<span class="hljs-number">0</span>];
+                pop_heap(min.begin(), min.end(), greater&lt;<span class="hljs-keyword">int</span>&gt;());
+                min.pop_back();
+            }
+            max.push_back(num);
+            push_heap(max.begin(), max.end(), less&lt;<span class="hljs-keyword">int</span>&gt;());
+        }
+    }
+
+    <span class="hljs-function"><span class="hljs-keyword">double</span> <span class="hljs-title">GetMedian</span><span class="hljs-params">()</span>
+    </span>{ 
+        <span class="hljs-keyword">int</span> sum = max.size() + min.size();
+        <span class="hljs-keyword">double</span> mid = <span class="hljs-number">0</span>;
+        <span class="hljs-keyword">if</span>(sum &amp; <span class="hljs-number">1</span>) mid = min[<span class="hljs-number">0</span>];
+        <span class="hljs-keyword">else</span> mid = (min[<span class="hljs-number">0</span>] + max[<span class="hljs-number">0</span>]) / <span class="hljs-number">2.0</span>;
+        <span class="hljs-keyword">return</span> mid;
+    }
+};
+</div></code></pre>
+<h1 id="35-%e8%bf%9e%e7%bb%ad%e5%ad%90%e6%95%b0%e7%bb%84%e7%9a%84%e6%9c%80%e5%a4%a7%e5%92%8c">35. 连续子数组的最大和</h1>
+<ul>
+<li>例如:{6,-3,-2,7,-15,1,2,2},连续子向量的最大和为8(从第0个开始,到第3个为止)。</li>
+</ul>
+<pre><code class="language-c++"><div><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Solution</span> {</span>
+<span class="hljs-keyword">public</span>:
+    <span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">FindGreatestSumOfSubArray</span><span class="hljs-params">(<span class="hljs-built_in">vector</span>&lt;<span class="hljs-keyword">int</span>&gt; <span class="hljs-built_in">array</span>)</span> </span>{
+        <span class="hljs-keyword">if</span>(<span class="hljs-built_in">array</span>.empty()) <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;
+        <span class="hljs-keyword">int</span> max = <span class="hljs-built_in">array</span>[<span class="hljs-number">0</span>], sum = <span class="hljs-built_in">array</span>[<span class="hljs-number">0</span>], len = <span class="hljs-built_in">array</span>.size();
+        <span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> i=<span class="hljs-number">1</span>; i&lt;len; i++){
+            sum = sum &gt; <span class="hljs-number">0</span> ? sum : <span class="hljs-number">0</span>;
+            sum += <span class="hljs-built_in">array</span>[i];
+            max = max &gt; sum ? max : sum;
+        }
+        <span class="hljs-keyword">return</span> max;
+    }
+};
+</div></code></pre>
+<h1 id="36-%e6%95%b4%e6%95%b0%e4%b8%ad1%e5%87%ba%e7%8e%b0%e7%9a%84%e6%ac%a1%e6%95%b0">36. 整数中1出现的次数</h1>
+<ul>
+<li><a href="https://blog.csdn.net/huzhigenlaohu/article/details/51779365">参考</a></li>
+</ul>
+<pre><code class="language-c++"><div><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Solution</span> {</span>
+<span class="hljs-keyword">public</span>:
+    <span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">NumberOf1Between1AndN_Solution</span><span class="hljs-params">(<span class="hljs-keyword">int</span> n)</span>
+    </span>{
+        <span class="hljs-keyword">int</span> count = <span class="hljs-number">0</span>;
+        <span class="hljs-keyword">for</span> (<span class="hljs-keyword">int</span> i = <span class="hljs-number">1</span>; i &lt;= n; i *= <span class="hljs-number">10</span>) {
+            <span class="hljs-keyword">int</span> a = n / i, b = n % i;
+            <span class="hljs-comment">//之所以补8，是因为当百位为0，则a/10==(a+8)/10，</span>
+            <span class="hljs-comment">//当百位&gt;=2，补8会产生进位位，效果等同于(a/10+1)</span>
+            count += (a + <span class="hljs-number">8</span>) / <span class="hljs-number">10</span> * i + ((a % <span class="hljs-number">10</span> == <span class="hljs-number">1</span>) ? b + <span class="hljs-number">1</span> : <span class="hljs-number">0</span>);
+        }
+        <span class="hljs-keyword">return</span> count;
+    }
+};
+</div></code></pre>
+<h1 id="37-%e4%b8%91%e6%95%b0">37. 丑数</h1>
+<ul>
+<li>题目描述:
+把只包含质因子2、3和5的数称作丑数（Ugly Number）。例如6、8都是丑数，但14不是，因为它包含质因子7。 习惯上我们把1当做是第一个丑数。求按从小到大的顺序的第N个丑数。</li>
+<li>建立数组，空间换时间</li>
+</ul>
+<pre><code class="language-c++"><div><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Solution</span> {</span>
+<span class="hljs-keyword">public</span>:
+    <span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">GetUglyNumber_Solution</span><span class="hljs-params">(<span class="hljs-keyword">int</span> index)</span> </span>{
+        <span class="hljs-keyword">if</span>(index &lt;= <span class="hljs-number">0</span>) <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;
+        <span class="hljs-keyword">int</span> *pUglyNumber = <span class="hljs-keyword">new</span> <span class="hljs-keyword">int</span>[index];
+        pUglyNumber[<span class="hljs-number">0</span>] = <span class="hljs-number">1</span>;
+        <span class="hljs-keyword">int</span> *pMulti2 = pUglyNumber;
+        <span class="hljs-keyword">int</span> *pMulti3 = pUglyNumber;
+        <span class="hljs-keyword">int</span> *pMulti5 = pUglyNumber;
+        <span class="hljs-keyword">int</span> idx = <span class="hljs-number">1</span>;
+        <span class="hljs-keyword">while</span>(idx &lt; index){
+            <span class="hljs-keyword">int</span> min = Min(*pMulti2 * <span class="hljs-number">2</span>, *pMulti3 * <span class="hljs-number">3</span>, *pMulti5 * <span class="hljs-number">5</span>);
+            pUglyNumber[idx] = min;
+            
+            <span class="hljs-keyword">if</span>(*pMulti2 * <span class="hljs-number">2</span> &lt;= min) pMulti2++;
+            <span class="hljs-keyword">if</span>(*pMulti3 * <span class="hljs-number">3</span> &lt;= min) pMulti3++;
+            <span class="hljs-keyword">if</span>(*pMulti5 * <span class="hljs-number">5</span> &lt;= min) pMulti5++;
+            idx++;
+        }
+        <span class="hljs-keyword">return</span> pUglyNumber[index<span class="hljs-number">-1</span>];
+    }
+    <span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">Min</span><span class="hljs-params">(<span class="hljs-keyword">int</span> num1, <span class="hljs-keyword">int</span> num2, <span class="hljs-keyword">int</span> num3)</span></span>{
+        <span class="hljs-keyword">int</span> min = num1 &lt; num2 ? num1 : num2;
+        min = min &lt; num3 ? min : num3;
+        <span class="hljs-keyword">return</span> min;
+    }
+};
+</div></code></pre>
+<h1 id="38-%e6%95%b0%e7%bb%84%e4%b8%ad%e7%9a%84%e9%80%86%e5%ba%8f%e5%af%b9">38. 数组中的逆序对</h1>
+<ul>
+<li>题目描述:<br>
+在数组中的两个数字，如果前面一个数字大于后面的数字，则这两个数字组成一个逆序对。输入一个数组,求出这个数组中的逆序对的总数P。并将P对1000000007取模的结果输出。 即输出P%1000000007</li>
+<li>归并排序，时间复杂度O(logN).</li>
+</ul>
+<pre><code class="language-c++"><div><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Solution</span> {</span>
+<span class="hljs-keyword">public</span>:
+    <span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">InversePairs</span><span class="hljs-params">(<span class="hljs-built_in">vector</span>&lt;<span class="hljs-keyword">int</span>&gt; data)</span> </span>{
+        <span class="hljs-keyword">if</span>(data.empty()) <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;
+        
+        <span class="hljs-keyword">int</span> len = data.size();
+        <span class="hljs-built_in">vector</span>&lt;<span class="hljs-keyword">int</span>&gt; copy(data);
+
+        <span class="hljs-keyword">int</span> count = InversePairs(data, copy, <span class="hljs-number">0</span>, len<span class="hljs-number">-1</span>);
+        <span class="hljs-keyword">return</span> count;
+    }
+    <span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">InversePairs</span><span class="hljs-params">(<span class="hljs-built_in">vector</span>&lt;<span class="hljs-keyword">int</span>&gt; &amp;data, <span class="hljs-built_in">vector</span>&lt;<span class="hljs-keyword">int</span>&gt; &amp;copy, <span class="hljs-keyword">int</span> start, <span class="hljs-keyword">int</span> end)</span></span>{
+        <span class="hljs-keyword">if</span>(start == end){
+            <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;
+        }
+        <span class="hljs-keyword">int</span> len = (end - start) &gt;&gt; <span class="hljs-number">1</span>;
+        <span class="hljs-keyword">int</span> left = InversePairs(copy, data, start, start+len);
+        <span class="hljs-keyword">int</span> right = InversePairs(copy, data, start+len+<span class="hljs-number">1</span>, end);
+        
+        <span class="hljs-keyword">int</span> i = start+len, j = end, idx_copy = end, count = <span class="hljs-number">0</span>;
+        <span class="hljs-keyword">while</span>(i &gt;= start &amp;&amp; j &gt;= start+len+<span class="hljs-number">1</span>){
+            <span class="hljs-keyword">if</span>(data[i] &gt; data[j]){
+                count = (count + j - (start + len)) % <span class="hljs-number">1000000007</span>;
+                copy[idx_copy--] = data[i--];
+            }
+            <span class="hljs-keyword">else</span>{
+                copy[idx_copy--] = data[j--];
+            }
+        }
+        <span class="hljs-keyword">while</span>(i &gt;= start) copy[idx_copy--] = data[i--];
+        <span class="hljs-keyword">while</span>(j &gt;= start+len+<span class="hljs-number">1</span>) copy[idx_copy--] = data[j--];
+        <span class="hljs-keyword">return</span> (count + left + right) % <span class="hljs-number">1000000007</span>;
+    }
+};
+</div></code></pre>
+<h1 id="39%e4%b8%a4%e4%b8%aa%e9%93%be%e8%a1%a8%e7%9a%84%e7%ac%ac%e4%b8%80%e4%b8%aa%e5%85%ac%e5%85%b1%e7%bb%93%e7%82%b9">39.两个链表的第一个公共结点</h1>
+<ul>
+<li>题目描述:<br>
+输入两个链表，找出它们的第一个公共结点。</li>
+<li>解法：长的链表先走几步，然后找第一个公共节点</li>
+</ul>
+<pre><code class="language-c++"><div><span class="hljs-comment">/*
+struct ListNode {
+	int val;
+	struct ListNode *next;
+	ListNode(int x) :
+			val(x), next(NULL) {
+	}
+};*/</span>
+<span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Solution</span> {</span>
+<span class="hljs-keyword">public</span>:
+    <span class="hljs-function">ListNode* <span class="hljs-title">FindFirstCommonNode</span><span class="hljs-params">( ListNode* pHead1, ListNode* pHead2)</span> </span>{
+        <span class="hljs-keyword">int</span> len1 = getLen(pHead1);
+        <span class="hljs-keyword">int</span> len2 = getLen(pHead2);
+        <span class="hljs-keyword">int</span> DoL = len1 - len2;
+        ListNode *pLongHead = pHead1, *pShortHead = pHead2;
+        <span class="hljs-keyword">if</span>(len1 &lt; len2){
+            pLongHead = pHead2;
+            pShortHead = pHead1;
+            DoL = -DoL;
+        }
+        <span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> i=<span class="hljs-number">0</span>; i&lt;DoL; i++)
+            pLongHead = pLongHead-&gt;next;
+        <span class="hljs-keyword">while</span>(pLongHead != pShortHead){
+            pLongHead = pLongHead-&gt;next;
+            pShortHead = pShortHead-&gt;next;
+        }
+        <span class="hljs-keyword">return</span> pLongHead;
+    }
+    <span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">getLen</span><span class="hljs-params">(ListNode* pHead)</span></span>{
+        <span class="hljs-keyword">int</span> len = <span class="hljs-number">0</span>;
+        <span class="hljs-keyword">while</span>(pHead){
+            pHead = pHead-&gt;next;
+            len++;
+        }
+        <span class="hljs-keyword">return</span> len;
+    }
+};
+</div></code></pre>
+<h1 id="40-%e6%95%b0%e5%ad%97%e5%9c%a8%e6%8e%92%e5%ba%8f%e6%95%b0%e7%bb%84%e4%b8%ad%e5%87%ba%e7%8e%b0%e7%9a%84%e6%ac%a1%e6%95%b0">40. 数字在排序数组中出现的次数</h1>
+<ul>
+<li>题目描述:<br>
+统计一个数字在排序数组中出现的次数。</li>
+<li>二分法</li>
+</ul>
+<pre><code class="language-c++"><div><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Solution</span> {</span>
+<span class="hljs-keyword">public</span>:
+    <span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">GetNumberOfK</span><span class="hljs-params">(<span class="hljs-built_in">vector</span>&lt;<span class="hljs-keyword">int</span>&gt; data ,<span class="hljs-keyword">int</span> k)</span> </span>{
+        <span class="hljs-keyword">if</span>(data.empty()) <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;
+        <span class="hljs-keyword">int</span> len = data.size();
+        <span class="hljs-keyword">int</span> left = findLeft(data, k, <span class="hljs-number">0</span>, len<span class="hljs-number">-1</span>);
+        <span class="hljs-keyword">int</span> right = findRight(data, k, <span class="hljs-number">0</span>, len<span class="hljs-number">-1</span>);
+        <span class="hljs-keyword">if</span>(left == <span class="hljs-number">-1</span>) <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;
+        <span class="hljs-keyword">return</span> right - left + <span class="hljs-number">1</span>;
+    }
+    <span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">findLeft</span><span class="hljs-params">(<span class="hljs-built_in">vector</span>&lt;<span class="hljs-keyword">int</span>&gt; data ,<span class="hljs-keyword">int</span> k, <span class="hljs-keyword">int</span> start, <span class="hljs-keyword">int</span> end)</span></span>{
+        <span class="hljs-keyword">if</span>(start &gt; end) <span class="hljs-keyword">return</span> <span class="hljs-number">-1</span>;
+        <span class="hljs-keyword">int</span> mid = (start + end) &gt;&gt; <span class="hljs-number">1</span>;
+        <span class="hljs-keyword">if</span>(data[mid] &gt; k)
+            end = mid - <span class="hljs-number">1</span>;
+        <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span>(data[mid] &lt; k)
+            start = mid + <span class="hljs-number">1</span>;
+        <span class="hljs-keyword">else</span>{
+            <span class="hljs-keyword">if</span>(mid == <span class="hljs-number">0</span> || data[mid<span class="hljs-number">-1</span>] &lt; k)
+                <span class="hljs-keyword">return</span> mid;
+            <span class="hljs-keyword">else</span>
+                end = mid - <span class="hljs-number">1</span>;
+        }
+        <span class="hljs-keyword">return</span> findLeft(data, k, start, end);
+    }
+    <span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">findRight</span><span class="hljs-params">(<span class="hljs-built_in">vector</span>&lt;<span class="hljs-keyword">int</span>&gt; data ,<span class="hljs-keyword">int</span> k, <span class="hljs-keyword">int</span> start, <span class="hljs-keyword">int</span> end)</span></span>{
+        <span class="hljs-keyword">if</span>(start &gt; end) <span class="hljs-keyword">return</span> <span class="hljs-number">-1</span>;
+        <span class="hljs-keyword">int</span> mid = (start + end) &gt;&gt; <span class="hljs-number">1</span>;
+        <span class="hljs-keyword">if</span>(data[mid] &gt; k)
+            end = mid - <span class="hljs-number">1</span>;
+        <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span>(data[mid] &lt; k)
+            start = mid + <span class="hljs-number">1</span>;
+        <span class="hljs-keyword">else</span>{
+            <span class="hljs-keyword">if</span>(mid == data.size()<span class="hljs-number">-1</span> || data[mid+<span class="hljs-number">1</span>] &gt; k)
+                <span class="hljs-keyword">return</span> mid;
+            <span class="hljs-keyword">else</span>
+                start = mid + <span class="hljs-number">1</span>;
+        }
+        <span class="hljs-keyword">return</span> findRight(data, k, start, end);
+    }
+};
+</div></code></pre>
+<h1 id="41-%e4%ba%8c%e5%8f%89%e6%a0%91%e7%9a%84%e6%b7%b1%e5%ba%a6">41. 二叉树的深度</h1>
+<ul>
+<li>这个也算后序遍历。。。树的深度等于左右子树深度加一。</li>
+</ul>
+<pre><code class="language-c++"><div><span class="hljs-comment">/*
+struct TreeNode {
+	int val;
+	struct TreeNode *left;
+	struct TreeNode *right;
+	TreeNode(int x) :
+			val(x), left(NULL), right(NULL) {
+	}
+};*/</span>
+<span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Solution</span> {</span>
+<span class="hljs-keyword">public</span>:
+    <span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">TreeDepth</span><span class="hljs-params">(TreeNode* pRoot)</span>
+    </span>{
+        <span class="hljs-keyword">if</span>(pRoot == <span class="hljs-literal">nullptr</span>) <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;
+        <span class="hljs-keyword">int</span> left = TreeDepth(pRoot-&gt;left);
+        <span class="hljs-keyword">int</span> right = TreeDepth(pRoot-&gt;right);
+        <span class="hljs-keyword">return</span> <span class="hljs-number">1</span> + (left &gt; right ? left : right);
+    }
+};
+</div></code></pre>
+<h1 id="42-%e5%b9%b3%e8%a1%a1%e4%ba%8c%e5%8f%89%e6%a0%91">42. 平衡二叉树</h1>
+<ul>
+<li>题目描述:<br>
+输入一棵二叉树，判断该二叉树是否是平衡二叉树。</li>
+<li>解法：用后序遍历的方式，先求出左右子树的高度，判断左右子树均为平衡二叉树后，再判断左右子树的高度差是否小于2</li>
+</ul>
+<pre><code class="language-c++"><div><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Solution</span> {</span>
+<span class="hljs-keyword">public</span>:
+    <span class="hljs-function"><span class="hljs-keyword">bool</span> <span class="hljs-title">IsBalanced_Solution</span><span class="hljs-params">(TreeNode* pRoot)</span> </span>{
+        <span class="hljs-keyword">if</span>(IsBalanced(pRoot) == <span class="hljs-number">-1</span>) <span class="hljs-keyword">return</span> <span class="hljs-literal">false</span>;
+        <span class="hljs-keyword">return</span> <span class="hljs-literal">true</span>;
+        
+    }
+    <span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">IsBalanced</span><span class="hljs-params">(TreeNode* pRoot)</span></span>{
+        <span class="hljs-keyword">if</span>(pRoot == <span class="hljs-literal">nullptr</span>) <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;
+        <span class="hljs-keyword">int</span> left = IsBalanced(pRoot-&gt;left);
+        <span class="hljs-keyword">int</span> right = IsBalanced(pRoot-&gt;right);
+        <span class="hljs-keyword">if</span>(left == <span class="hljs-number">-1</span> || right == <span class="hljs-number">-1</span>) <span class="hljs-keyword">return</span> <span class="hljs-number">-1</span>;
+        <span class="hljs-keyword">if</span>(<span class="hljs-built_in">abs</span>(left - right) &lt;= <span class="hljs-number">1</span>) <span class="hljs-keyword">return</span> <span class="hljs-number">1</span> + (left &gt; right ? left : right);
+        <span class="hljs-keyword">else</span> <span class="hljs-keyword">return</span> <span class="hljs-number">-1</span>;
+    }
+};
+</div></code></pre>
+<h1 id="43-%e6%95%b0%e7%bb%84%e4%b8%ad%e5%8f%aa%e5%87%ba%e7%8e%b0%e4%b8%80%e6%ac%a1%e7%9a%84%e6%95%b0%e5%ad%97">43. 数组中只出现一次的数字</h1>
+<ul>
+<li>题目描述:<br>
+一个整型数组里除了两个数字之外，其他的数字都出现了两次。请写程序找出这两个只出现一次的数字。</li>
+<li>解法：因为有两个不同的数字，所有数字异或完后必不为0；再根据异或完的数某一位的1，将数组中的数分成两组，再分别异或。</li>
+</ul>
+<pre><code class="language-c++"><div><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Solution</span> {</span>
+<span class="hljs-keyword">public</span>:
+    <span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">FindNumsAppearOnce</span><span class="hljs-params">(<span class="hljs-built_in">vector</span>&lt;<span class="hljs-keyword">int</span>&gt; data,<span class="hljs-keyword">int</span>* num1,<span class="hljs-keyword">int</span> *num2)</span> </span>{
+        <span class="hljs-keyword">int</span> len = data.size();
+        <span class="hljs-keyword">if</span>(len &lt; <span class="hljs-number">2</span>) <span class="hljs-keyword">return</span>;
+        
+        <span class="hljs-keyword">int</span> result = <span class="hljs-number">0</span>;
+        <span class="hljs-keyword">for</span>(<span class="hljs-keyword">auto</span> x : data)
+            result ^= x;
+        result = find_first_one(result);
+        
+        *num1 = *num2 = <span class="hljs-number">0</span>;
+        <span class="hljs-keyword">for</span>(<span class="hljs-keyword">auto</span> x : data){
+            <span class="hljs-keyword">if</span>(x &amp; result) *num1 ^= x;
+            <span class="hljs-keyword">else</span> *num2 ^= x;
+        }
+    }
+    <span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">find_first_one</span><span class="hljs-params">(<span class="hljs-keyword">int</span> a)</span></span>{
+        <span class="hljs-keyword">int</span> b = <span class="hljs-number">1</span>;
+        <span class="hljs-keyword">while</span>((a &amp; b) == <span class="hljs-number">0</span>){
+            b &lt;&lt;= <span class="hljs-number">1</span>;
+        }
+        <span class="hljs-keyword">return</span> b;
+    }
+};
+</div></code></pre>
+<h1 id="44-%e5%92%8c%e4%b8%bas%e7%9a%84%e8%bf%9e%e7%bb%ad%e6%ad%a3%e6%95%b0%e5%ba%8f%e5%88%97">44. 和为S的连续正数序列</h1>
+<ul>
+<li>题目描述：<br>
+输入一个正数s,打印出所有和为s的连续正数序列（至少含有两个数）。例如输入15，由于1+2+3+4+5=4+5+6=7+8=15；所以打印出三个连续序列1~5 , 4~6, 7~8；</li>
+</ul>
+<pre><code class="language-c++"><div><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Solution</span> {</span>
+<span class="hljs-keyword">public</span>:
+    <span class="hljs-built_in">vector</span>&lt;<span class="hljs-built_in">vector</span>&lt;<span class="hljs-keyword">int</span>&gt; &gt; FindContinuousSequence(<span class="hljs-keyword">int</span> sum) {
+        <span class="hljs-built_in">vector</span>&lt;<span class="hljs-built_in">vector</span>&lt;<span class="hljs-keyword">int</span>&gt; &gt; ans;
+        <span class="hljs-keyword">if</span>(sum &lt; <span class="hljs-number">3</span>) <span class="hljs-keyword">return</span> ans;
+        <span class="hljs-keyword">int</span> left = <span class="hljs-number">1</span>, right = <span class="hljs-number">2</span>, s = <span class="hljs-number">3</span>, mid = (sum+<span class="hljs-number">1</span>)&gt;&gt;<span class="hljs-number">1</span>;
+        <span class="hljs-keyword">while</span>(left &lt; mid){
+            <span class="hljs-keyword">if</span>(s &lt; sum){
+                s += ++right;
+            }
+            <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span>(s &gt; sum){
+                s -= left++;
+            }
+            <span class="hljs-keyword">else</span>{
+                <span class="hljs-built_in">vector</span>&lt;<span class="hljs-keyword">int</span>&gt; tmp;
+                <span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> i=left; i&lt;=right; i++)
+                    tmp.push_back(i);
+                ans.push_back(tmp);
+                s += ++right; 
+                s -= left++;
+                s -= left++;
+            }
+        }
+        <span class="hljs-keyword">return</span> ans;
+    }
+};
+</div></code></pre>
+<h1 id="45-%e7%bf%bb%e8%bd%ac%e5%8d%95%e8%af%8d%e9%a1%ba%e5%ba%8f%e5%88%97">45. 翻转单词顺序列</h1>
+<ul>
+<li>题目描述：<br>
+将“I am a student.”变为“student. a am I”</li>
+<li>解法：先翻转整个句子，再翻转每个单词</li>
+</ul>
+<pre><code class="language-c++"><div><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Solution</span> {</span>
+<span class="hljs-keyword">public</span>:
+    <span class="hljs-function"><span class="hljs-built_in">string</span> <span class="hljs-title">ReverseSentence</span><span class="hljs-params">(<span class="hljs-built_in">string</span> str)</span> </span>{
+        <span class="hljs-keyword">int</span> len = str.length();
+        ReverseSentence(str, <span class="hljs-number">0</span>, len<span class="hljs-number">-1</span>);
+        <span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> i=<span class="hljs-number">0</span>, j=<span class="hljs-number">0</span>; j&lt;=len; j++){
+            <span class="hljs-keyword">if</span>(str[j] == <span class="hljs-string">' '</span> || str[j] == <span class="hljs-string">'\0'</span>){
+                ReverseSentence(str, i, j<span class="hljs-number">-1</span>);
+                i = j + <span class="hljs-number">1</span>;
+            }
+        }
+        <span class="hljs-keyword">return</span> str;
+    }
+    <span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">ReverseSentence</span><span class="hljs-params">(<span class="hljs-built_in">string</span>&amp; str, <span class="hljs-keyword">int</span> start, <span class="hljs-keyword">int</span> end)</span></span>{
+        <span class="hljs-keyword">while</span>(start &lt; end){
+            <span class="hljs-keyword">char</span> c = str[start];
+            str[start] = str[end];
+            str[end] = c;
+            start++, end--;
+        }
+    }
+};
+</div></code></pre>
+<h1 id="46-%e5%b7%a6%e6%97%8b%e8%bd%ac%e5%ad%97%e7%ac%a6%e4%b8%b2">46. 左旋转字符串</h1>
+<ul>
+<li>例如，字符序列S=”abcXYZdef”,要求输出循环左移3位后的结果，即“XYZdefabc”。</li>
+</ul>
+<pre><code class="language-c++"><div><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Solution</span> {</span>
+<span class="hljs-keyword">public</span>:
+    <span class="hljs-function"><span class="hljs-built_in">string</span> <span class="hljs-title">LeftRotateString</span><span class="hljs-params">(<span class="hljs-built_in">string</span> str, <span class="hljs-keyword">int</span> n)</span> </span>{
+        <span class="hljs-keyword">int</span> len = str.length();
+        <span class="hljs-keyword">if</span>(n &lt; <span class="hljs-number">0</span> || str.empty()) <span class="hljs-keyword">return</span> str;
+        n %= len;
+        Reverse(str, <span class="hljs-number">0</span>, n<span class="hljs-number">-1</span>);
+        Reverse(str, n, len<span class="hljs-number">-1</span>);
+        Reverse(str, <span class="hljs-number">0</span>, len<span class="hljs-number">-1</span>);
+        <span class="hljs-keyword">return</span> str;
+    }
+    <span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">Reverse</span><span class="hljs-params">(<span class="hljs-built_in">string</span> &amp;str, <span class="hljs-keyword">int</span> s, <span class="hljs-keyword">int</span> e)</span></span>{
+        <span class="hljs-keyword">while</span>(s &lt; e){
+            <span class="hljs-keyword">char</span> c = str[s];
+            str[s] = str[e];
+            str[e] = c;
+            s++, e--;
+        }
+    }
+};
+</div></code></pre>
+<h1 id="47-%e6%bb%91%e5%8a%a8%e7%aa%97%e5%8f%a3%e7%9a%84%e6%9c%80%e5%a4%a7%e5%80%bc">47. 滑动窗口的最大值</h1>
+<ul>
+<li>题目描述：<br>
+给定一个数组和滑动窗口的大小，找出所有滑动窗口里数值的最大值。例如，如果输入数组{2,3,4,2,6,2,5,1}及滑动窗口的大小3，那么一共存在6个滑动窗口，他们的最大值分别为{4,4,6,6,6,5}； 针对数组{2,3,4,2,6,2,5,1}的滑动窗口有以下6个： {[2,3,4],2,6,2,5,1}， {2,[3,4,2],6,2,5,1}， {2,3,[4,2,6],2,5,1}， {2,3,4,[2,6,2],5,1}， {2,3,4,2,[6,2,5],1}， {2,3,4,2,6,[2,5,1]}。</li>
+<li>解法：deque双向队列</li>
+</ul>
+<pre><code class="language-c++"><div><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Solution</span> {</span>
+<span class="hljs-keyword">public</span>:
+    <span class="hljs-built_in">vector</span>&lt;<span class="hljs-keyword">int</span>&gt; maxInWindows(<span class="hljs-keyword">const</span> <span class="hljs-built_in">vector</span>&lt;<span class="hljs-keyword">int</span>&gt;&amp; num, <span class="hljs-keyword">unsigned</span> <span class="hljs-keyword">int</span> size)
+    {
+        <span class="hljs-built_in">vector</span>&lt;<span class="hljs-keyword">int</span>&gt; ans;
+        <span class="hljs-keyword">int</span> len = num.size();
+        <span class="hljs-keyword">if</span>(size &lt;= <span class="hljs-number">0</span> || len &lt; size) <span class="hljs-keyword">return</span> ans;
+        <span class="hljs-built_in">deque</span>&lt;<span class="hljs-keyword">int</span>&gt; index;
+        <span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> i=<span class="hljs-number">0</span>; i&lt;size; i++){
+            <span class="hljs-keyword">while</span>(!index.empty() &amp;&amp; num[i] &gt; num[index.back()])
+                index.pop_back();
+            index.push_back(i);
+        }
+        <span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> i=size; i&lt;len; i++){
+            ans.push_back(num[index.front()]);
+            <span class="hljs-keyword">while</span>(!index.empty() &amp;&amp; num[i] &gt; num[index.back()])
+                index.pop_back();
+            <span class="hljs-keyword">if</span>(!index.empty() &amp;&amp; i - index.front() &gt;= size)
+                index.pop_front();
+            index.push_back(i);
+        }
+        ans.push_back(num[index.front()]);
+        <span class="hljs-keyword">return</span> ans;
+    }
+};
+</div></code></pre>
+<h1 id="48-%e4%ba%8c%e5%8f%89%e6%90%9c%e7%b4%a2%e6%a0%91%e7%9a%84%e7%ac%ack%e4%b8%aa%e7%bb%93%e7%82%b9">48. 二叉搜索树的第k个结点</h1>
+<ul>
+<li>题目描述:<br>
+给定一棵二叉搜索树，请找出其中的第k小的结点。例如， （5，3，7，2，4，6，8）    中，按结点数值大小顺序第三小结点的值为4。</li>
+<li>思路：BST的中序遍历是顺序的。</li>
+</ul>
+<pre><code class="language-c++"><div><span class="hljs-comment">/*
+struct TreeNode {
+    int val;
+    struct TreeNode *left;
+    struct TreeNode *right;
+    TreeNode(int x) :
+            val(x), left(NULL), right(NULL) {
+    }
+};
+*/</span>
+<span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Solution</span> {</span>
+<span class="hljs-keyword">public</span>:
+    <span class="hljs-function">TreeNode* <span class="hljs-title">KthNode</span><span class="hljs-params">(TreeNode* pRoot, <span class="hljs-keyword">int</span> k)</span>
+    </span>{
+        <span class="hljs-keyword">if</span>(!pRoot || k&lt;=<span class="hljs-number">0</span>) <span class="hljs-keyword">return</span> <span class="hljs-literal">nullptr</span>;
+        <span class="hljs-keyword">return</span> findKthNode(pRoot, k);
+    }
+    <span class="hljs-function">TreeNode* <span class="hljs-title">findKthNode</span><span class="hljs-params">(TreeNode* pRoot, <span class="hljs-keyword">int</span>&amp; k)</span></span>{
+        TreeNode* target = <span class="hljs-literal">nullptr</span>;
+        <span class="hljs-keyword">if</span>(pRoot-&gt;left)  <span class="hljs-comment">//遍历左子树</span>
+            target = findKthNode(pRoot-&gt;left, k);
+        <span class="hljs-keyword">if</span>(target == <span class="hljs-literal">nullptr</span>){  <span class="hljs-comment">//处理根节点</span>
+            <span class="hljs-keyword">if</span>(k-- == <span class="hljs-number">1</span>)
+                target = pRoot;
+        }
+        <span class="hljs-keyword">if</span>(target == <span class="hljs-literal">nullptr</span> &amp;&amp; pRoot-&gt;right)  <span class="hljs-comment">//遍历右子树</span>
+            target = findKthNode(pRoot-&gt;right, k);
+        <span class="hljs-keyword">return</span> target;
+    }
+};
+</div></code></pre>
+<h1 id="49-%e4%b8%8d%e7%94%a8%e5%8a%a0%e5%87%8f%e4%b9%98%e9%99%a4%e5%81%9a%e5%8a%a0%e6%b3%95">49. 不用加减乘除做加法</h1>
+<ul>
+<li>题目描述:<br>
+写一个函数，求两个整数之和，要求在函数体内不得使用+、-、*、/四则运算符号。</li>
+<li>思路：不用加减乘除意思就是用位运算。用异或代替无进位的求和，用与运算代替进位。</li>
+</ul>
+<pre><code class="language-c++"><div><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Solution</span> {</span>
+<span class="hljs-keyword">public</span>:
+    <span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">Add</span><span class="hljs-params">(<span class="hljs-keyword">int</span> num1, <span class="hljs-keyword">int</span> num2)</span>
+    </span>{
+        <span class="hljs-keyword">int</span> sum = <span class="hljs-number">0</span>, carry = <span class="hljs-number">0</span>;
+        <span class="hljs-keyword">do</span>{
+            sum = num1 ^ num2;
+            carry = (num1 &amp; num2) &lt;&lt; <span class="hljs-number">1</span>;
+            num1 = sum;
+            num2 = carry;
+        }<span class="hljs-keyword">while</span>(num2);
+        <span class="hljs-keyword">return</span> sum;
+    }
+};
+</div></code></pre>
+<h1 id="50-%e6%9e%84%e5%bb%ba%e4%b9%98%e7%a7%af%e6%95%b0%e7%bb%84">50. 构建乘积数组</h1>
+<ul>
+<li>题目描述:<br>
+给定一个数组A[0,1,...,n-1],请构建一个数组B[0,1,...,n-1],其中B中的元素B[i]=A[0] * A[1] * ...* A[i-1] * A[i+1] *... * A[n-1]。不能使用除法。</li>
+<li>思路：先累乘左边，再累乘右边。</li>
+</ul>
+<pre><code class="language-c++"><div><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Solution</span> {</span>
+<span class="hljs-keyword">public</span>:
+    <span class="hljs-built_in">vector</span>&lt;<span class="hljs-keyword">int</span>&gt; multiply(<span class="hljs-keyword">const</span> <span class="hljs-built_in">vector</span>&lt;<span class="hljs-keyword">int</span>&gt;&amp; A) {
+        <span class="hljs-built_in">vector</span>&lt;<span class="hljs-keyword">int</span>&gt; ans;
+        <span class="hljs-keyword">int</span> size = A.size();
+        <span class="hljs-keyword">if</span>(size == <span class="hljs-number">0</span>) <span class="hljs-keyword">return</span> ans;
+        ans.push_back(<span class="hljs-number">1</span>);
+        <span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> i=<span class="hljs-number">1</span>; i&lt;size; i++){
+            ans.push_back(ans[i<span class="hljs-number">-1</span>] * A[i<span class="hljs-number">-1</span>]);
+        }
+        <span class="hljs-keyword">int</span> tmp = <span class="hljs-number">1</span>;
+        <span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> i=size<span class="hljs-number">-2</span>; i&gt;=<span class="hljs-number">0</span>; i--){
+            tmp *=　A[i+<span class="hljs-number">1</span>];
+            ans[i] *= tmp;
+        }
+        <span class="hljs-keyword">return</span> ans;
+    }
+};
+</div></code></pre>
+<h1 id="51-%e4%ba%8c%e5%8f%89%e6%a0%91%e4%b8%a4%e7%bb%93%e7%82%b9%e7%9a%84%e6%9c%80%e4%bd%8e%e5%85%ac%e5%85%b1%e7%a5%96%e5%85%88%e7%bb%93%e7%82%b9">51. 二叉树两结点的最低公共祖先结点</h1>
+<ul>
+<li>题目描述；<br>
+给定二叉树中的两个结点，输出这两个结点的最低公共祖先结点（LCA）。注意，该二叉树不一定是二叉搜索树。</li>
+<li>后序遍历</li>
+</ul>
+<pre><code class="language-c"><div><span class="hljs-class"><span class="hljs-keyword">struct</span> <span class="hljs-title">node</span> {</span>
+    <span class="hljs-keyword">int</span> data;
+    <span class="hljs-class"><span class="hljs-keyword">struct</span> <span class="hljs-title">node</span>* <span class="hljs-title">left</span>;</span>
+    <span class="hljs-class"><span class="hljs-keyword">struct</span> <span class="hljs-title">node</span>* <span class="hljs-title">right</span>;</span>
+};
+<span class="hljs-function">Node *<span class="hljs-title">LCA</span><span class="hljs-params">(Node *root, Node *p, Node *q)</span> </span>{
+    <span class="hljs-keyword">if</span> (!root) <span class="hljs-keyword">return</span> <span class="hljs-literal">NULL</span>;
+    <span class="hljs-keyword">if</span> (root == p || root == q) <span class="hljs-keyword">return</span> root;
+    Node *L = LCA(root-&gt;left, p, q);
+    Node *R = LCA(root-&gt;right, p, q);
+    <span class="hljs-keyword">if</span> (L &amp;&amp; R) <span class="hljs-keyword">return</span> root;  <span class="hljs-comment">// 如果p和q位于不同的子树  </span>
+    <span class="hljs-keyword">return</span> L ? L : R;  <span class="hljs-comment">//p和q在相同的子树，或者p和q不在子树中</span>
+}
+</div></code></pre>
+
+    </body>
+    </html>
