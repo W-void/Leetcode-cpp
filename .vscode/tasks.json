@@ -1,4 +1,3 @@
-
 {
     // See https://go.microsoft.com/fwlink/?LinkId=733558 
     // for the documentation about the tasks.json format
@@ -7,7 +6,7 @@
         {
             "type": "shell",
             "label": "g++", //这里注意一下，见下文
-            "command": "g++",
+            "command": "C:\\TDM-GCC-64\\bin\\g++.exe",
             "args": [
                 "-g",
                 "${file}",
@@ -15,10 +14,11 @@
                 "${fileDirname}\\${fileBasenameNoExtension}.exe"
             ],
             "options": {
-                "cwd": "C:\\Program Files (x86)\\CodeBlocks\\MinGW\\bin"
+                "cwd": "C:\\TDM-GCC-64\\bin"
             },
             "problemMatcher": [
                 "$gcc"
             ]
         }
     ]
+}
